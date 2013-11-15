@@ -1,0 +1,259 @@
+Je me réserve bien sûr le droit de modifier le fichier de traduction, car ce n'est pour l'isntant qu'un premier jet et il me faudra suivre les premiers correctifs pour m'adapter et proposer de meilleures traduction. Pour peu qu'on puisse mettre des textes plus longs non tronqués. Ce document contient toutes les réflexions qui me sont passées par la tête en jouant avec ton programme.
+
+)))))))))))))))))))))))))))))))))))))))))))))))
+
+Inspire-toi de mes traductions pour, même en anglais, proposer des textes plus explicites pour l'utilisateur. (des textes qui disent ce que ça fait vraiment)
+Tu es trop orienté programmeur (ou vers toi-même). Peut-être parce qu'au départ tu ne faisais ce programme que pour toi avant de penser à sa diffusion. 
+Exemple le titre "AboutBox" ... est ton nom technique pour la boîte "à propos"
+au lieu de l'indication de son contenu. Faut s'orienter utilisateur et essayer d'harmoniser ses propres appelations (un nom unique pour chaque chose) pour que l'utilisateur s'y retrouve.
+/* Va être pris en compte */
+
+
+À terme, il suffirait donc de réer un sous-dossier "Translation"  contenant ensuite des Français.ini, English.ini, etc... et un menu permettrait d'en automatiquement
+/* Va être pris en compte */
+
+petit bogue : j'entre de nouvelles dimensions à la main, je ferme, je rouvre : 
+les dimensions sont préservées. Je vais dans le menu Tools > Resolutions
+et là le customized n'est pas sélectionné. ( rien ne l'est )
+il n'a pourtant pas d'autre utilité. J'ai traduit "customised" par "( autre )"
+(on pourrait d'ailleurs virer ce texte, en ne sélectionnant rien quand on est en customized) 
+parce que le "personnalisée" laisse une légère confusion avec "personnaliser"
+ (laissant penser qu'on peut le personnaliser ici, via le menu, ce qui n'est pas le cas)
+(ce n'est pas une action possible mais une indication de ce qui a été entré)
+(tandis que les autres dimensions sont sélectionnables celle-là ne l'est jamais jamais)
+(donc autant la virer ce qui élimine le bogue au passage)
+/* Va être pris en compte : C'est dû à l'ancienne version qui était sous la forme d'une liste*/
+
+Il est fréquent que le souligné (indiquant un raccourci clavier) ne soit pas affiché, c'est un peu aléatoire. C'est peut-être lié au bogue suivant : 
+
+il est fréquent que même en anglais les textes ne rentrent pas 
+(J'ai parfois dû choisir des mots plus courts à cause des troncatures)
+--> cela dépend a priori des résolutions d'écrans (les tailles de polices ne sont pas définies en pixels alors que les dimensions des fenêtres sont définies en pixel.) Le problème n'a rien à voir avec la version de Windows ou le choix de la police. La cause est l'incompatibilité entre ces deux systèmes d'unités.
+Il faut laisser une taille automatique, des dimensions pas en pixel (ou une police en pixels, c'est risqué car sur les grandes résolutions le texte sera illisible et trop petit)
+/* Pas trouvé comment laisser une taille automatique.
+Mais une plus grande zone de texte & un alignement à droite, ça va être pris en compte*/
+
+pour résoudre le problème précédent, sur ta fenêtre principale par exemple, va dans l'inspecteur d'objet sur Styles, joue un peu avec des options qui permettent le TILE ou le SIZEBOX. Ainsi, l'utilisateur pourra redimensionner la fenêtre par rapport à sa résolution.
+/* je viens de le faire*/
+C'est peut-être encore le plus simple. Et je pense que c'est la source principale du problème. Globalement, tu peux aussi caler des objets par la droite au lieu de la gauche, etc (ce qui permet de prévoir des objets plus grands se terminant pourtant au bon endroit).
+/* Je ne peux pas caler les objets localement par rapport à leur groupe. Si tu sais comment faire, je suis preneur*/
+Au passage il y a même des "hint" qui permettent d'afficher une petite info-bulle au survol : par exemple pour décrire les fonctions o et oo de l'éditeur de formule (attention, pas de texte, plutôt un nom mathématique complet) Genre cos --> cosinus  
+/* Va être pris en compte, même si c'est pas dans les actions prioritaires. */
+Un exemple complet de ce qu'on peut faire (là c'est fait n'importe comment, c'est juste pour la démo)
+        #include <GUIConstants.au3>
+        $Form1 = GUICreate("Un petit essai simple", 633, 450, 193, 123, BitOR($WS_MAXIMIZEBOX,$WS_MINIMIZEBOX,$WS_SIZEBOX,$WS_THICKFRAME,$WS_SYSMENU,$WS_CAPTION,$WS_OVERLAPPEDWINDOW,$WS_TILEDWINDOW,$WS_POPUP,$WS_POPUPWINDOW,$WS_GROUP,$WS_TABSTOP,$WS_BORDER,$WS_CLIPSIBLINGS))
+        $List1 = GUICtrlCreateList("", 264, 40, 313, 500)
+        GUICtrlSetData(-1, "Cool •|Ligne n°1 ×• qsfdsfs")
+        GUICtrlSetFont(-1, 12, 400, 0, "Times New Roman")
+        GUICtrlSetResizing(-1, $GUI_DOCKRIGHT)
+        $Label1 = GUICtrlCreateLabel("Ceci est un essai de texte un petit peu long tout de même mais qui affiche coucou quand on le survole. Vas-y : et élargie la fenêtre.", 16, 48, 200, 400, $SS_RIGHTJUST)
+        GUICtrlSetResizing(-1, $GUI_DOCKLEFT+$GUI_DOCKRIGHT+$GUI_DOCKWIDTH)
+        GUICtrlSetTip(-1, "coucou")
+        GUISetState(@SW_SHOW)
+        While 1ß
+        Switch GUIGetMsg()
+        Case $GUI_EVENT_CLOSE
+            Exit
+        EndSwitch
+        WEnd
+
+
+dans le menu de sauvegarde, le "comment" par défaut "my nice fonction" n'est pas traduit même si on le change dans le fichier .ini Cela est probablement lié au fait que l'option de mémorisation du dernier nom utilisé est cochée par défaut : et donc la toute première fois il utilise le nom anglais mémorisé lors de mes premiers tests au lieu de reprendre le nom du du fichier de langue : à vérifier. 
+/* là c'est plutôt le fichier ReflexRendererInterface.ini qu'il faut traduire ;-)
+*/
+Par contre, quand on décoche l'option de mémorisation du nom, il faudrait que par défaut il re-propose le nom par défaut contenu dans le fichier .ini de traduction
+NOTE :   la variable MyNiceFunction est là deux fois !!! 
+/* Une fois dans le quicksave, une autre fois dans la savebox. Mais elle ne sert à rien dans le quicksave, je vais changer ça, en prenant la valeur existante.*/
+
+Le seul format pour les images REFLEX disponible à la souris est jpeg (dans le menu déroulant, dans les options de sauvegarde). Je n'ai pas accès aux autres, sauf au clavier. Je peux sélectionner la liste en cliquant dessus, ensuite je dois utiliser les flêches. Aucun menu déroulant ne s'ouvre.
+/* Je n'arrive pas à reproduire ce bug. Autant le clavier que la souris marche chez moi.
+   Son code est le suivant:
+   $id_reflex_extension = GUICtrlCreateCombo("Jpeg (*.jpg)", 167, 268, 97, 25)
+  GUICtrlSetData(-1, "Bitmap (*.bmp)")
+*/
+
+Quand on ouvre la fenêtre de sauvegarde, qu'on clique sur la croix de l'interface principale, alors la fenêtre de sauvegarde se ferme. D'habitude : soit tout se ferme, soit c'est refusé et la fenêtre d'enregistrement clignote et prend la main.
+De façon générale, la fenêtre principale peut reprendre la main alors qu'une fenêtre d'option est ouverte. On peut même re-cliquer sur le bouton qui ouvre l'option. L'option ne reprend pas la main. Dans les GUI on peut définir comment doit être le "focus" et si le fenêtre principale est bloquée ou pas, ça serait préférable et résoudrait globalement tous ces problèmes.
+/* Je viens de corriger ce bug. Maintenant, la fenêtre de sauvegarde réapparait (et toutes les autres possèdent maintenant la même propriété). Je n'ai pas trouvé d'option qui permettait de faire ça globalement. */
+
+Les options sont-elles enregistrées par défaut quand on clique sur Enregistrer ? Ce n'est pas super évident avec le texte actuel. Selon ta réponse je pourrais modifier le bouton d'enregistrement des options seules.
+/*
+Oui, les deux premiers "Save" et "Just save the options" enregistrent les options.
+*/
+
+Le texte 
+To change the saving directory, go to Tools>Save Reflex/Formula
+mériterait d'être tronqué par
+To change the saving directory, go to 
+puis d'y adjoindre les chaînes traduites de &Tools + " > " + &Save reflex / formula...
+/* Va être pris en compte */
+
+comme ça ça se met à jour tout seul
+Mais d'ailleurs, puisque le bouton "Save..." est juste à côte du "Quick Save" j'aurais tendance à proposer d'utiliser l'autre bouton plutôt que de faire passer par le menu. 
+/* Tant mieux... c'est juste histoire de. */
+Enfin, pourquoi pas ?, plutôt proposer un bouton "saving options" qui renverrait directement vers toutes la boîte de sauvagerde complète. (au lieu de dire quoi faire on lui donne le bouton pour faire). 
+/* ça a l'air mieux, à part le fait qu'on peut effectivement re-générer la (LA = Une représentation ;-) Reflex depuis cette boîte de dialogue "Saving options".
+Trouvons un meilleur titre.
+*/
+
+Enregistrement toujours : dans les options pour la formule, on peut choisir un nom de fichier. Quelle est l'utilité du bouton "nouveau" ?  puisqu'on peut entrer un nom depuis l'explorateur "..." de toute façon. Par contre un bouton lui donnant le même nom que le "comment" choisi serait bien plus utile ! (as comment) cette option garderait le chemin et l'extension tout en copiant le nom d'après le nom entré au-dessus.
+/*
+C'est en fait par expérience que j'ai ajouté un bouton "ouvrir fichier" et "nouveau" fichier, sachant que normalement, un utilisateur après quelques minutes va se mettre à générer des Reflex à tout bout de champ, et va vouloir les enregistrer dans le même fichier.
+Plusieurs fichiers séparés => c'est mauvais. C'est pour ça que je ne pense pas faire un bouton 
+"convertir le commentaire en nom de fichier de formule".
+Mais il me semble en outre que tu as eu certains problèmes que je n'ai pas eu
+est-ce dû à windows 2000?
+*/
+
+dans l'éditeur de formules, ce serait sympa que la case "inverse" se décoche automatiquement après un clic sur une fonction.
+/* ça se discute ? Est-ce une juste préférence ou bien un standard?
+Il va y avoir deux types d'utilisateurs.
+- Le premier cherche de l'art, il va essayer des formules au hasard.
+- Le deuxième veut taper une formule précise. Est-ce que les fonctions réciproques sont moins utilisées?
+*/
+
+pour les deux Reset la question s'est posée, il faudrait un Reset par exemple pour l'éditeur de formule (qui serait alors traduit par effacer) et un Init pour l'échelle du tracé (qui serait traduit par initial par exemple). En français on ne met pas le même mot pour ces deux Reset là.
+/* Va être pris en compte */
+
+
+est-ce bien nécessaire d'avoir cette petite icône dans la barre des tâches à droite ? pas pour une appli qui n'est pas destinée à tourner en tâche de fond. 
+/* Va être pris en compte. C'est une option par défaut... à changer donc */
+
+Text File (*.txt)|All (*.*)
+et
+Formula file (*.txt)|All (*.*)
+semblent avoir le même usage et devraient peut-être être unifiés en un seul
+/* Va être pris en compte. */
+
+//TODO: Répondre que 
+est-ce voulu d'avoir deux fois %S dans la chaîne
+'%s' is not a valid filename.%s Saving canceled.
+? (j'ai supposé que non)
+/* c'est débile, mais c'est pour avoir une seule chaîne et un retour automatique à la ligne @CRLF
+MsgBox(0, $Error, StringFormat($__s__is_not_a_valid_filename__s_Saving_canceled_, $filename, @CRLF))
+une autre idée?
+ */
+
+les noms de fichiers par défauts (il n'y a pas que l'image Reflex, mais aussi la formule par exemple) devraient tous par défaut être dans le dossier de l'application. Sauf éventuellement pour enregistrer les images non temporaires où il pourrait proposer le dossier "mes images" éventuellement. 
+(ceci dit, on peut choisir "mes images" dans l'explorateur facilement, donc j'en resterais au dossier local par premier choix par défaut).
+/* Va être pris en compte */
+
+Le texte "Output File" mériterait peut-être d'être un "Temp File" plutôt, non ?
+(sinon, quelle différence avec l'enregistrement d'une Reflex via le menu ?)
+/* Dans la version 1.0, quand il n'y avait pas d'autre boîte de dialogue ni d'autorender, c'était bel et bien le fichier de sortie qu'il fallait choisir avant de génrer la fonction.
+Va être pris en compte.
+*/
+
+pourquoi recalcule-t-il l'image avant d'enregistrer l'image juste calculée ?
+(je pose cette question mais je pré-sent que c'est une des options qui est mal nommée)
+En fait, par "Copy last reflex" tu as cru dire "Use last preview" ou "copy last file", n'est-ce pas ?
+/* Bug dans l'application, ça aurait dû copier. Va être réparé*/
+bah, vaut mieux le dire comme ça alors si tel est bien le cas. Là je ne suis pas sûr de savoir ce que ça fait. 
+Auquel cas High-resolution reflex mériterait : "Recalculate in HD"
+( dans la famille des textes à rendre plus explicite... )
+j'ai proposé :
+High-resolution reflex=Recalculer en HD
+Copy last reflex=Dernier visuel
+/* J'aime bien */
+mais je changerai après tes précisions.
+---> D'ailleurs globalement, on ne sait jamais trop à quoi s'attendre car par opposition on s'attendrait à avoir une faible résolution quand on ne choisit pas haute résolution. Cependant, ça n'a pas l'air d'être le cas. Auquel cas, mieux vaudrait s'orienter vers du 
+Copy last reflex=Copier dernier fichier
+/* J'aime moins => c'est pas un fichier qu'on copie, c'est bien l'image (la Reflex) */
+Mais cela ne serait toujours pas excplicite car quand il n'y a pas de dernier fichier, alors on copie l'image précalculée. Bref, je dirais que si on veut copier le dernier fichier, au fond, autant refaire une sauvegarde avec les mêmes options et simplement un autre nom.
+Par contre, avoir un option "basse résolution" (c'est à dire "HR" ou "Preview") serait bien plus utile et surtout aurait un effet bien plus prévisible pour l'utilisateur. Ça pourrait s'appeler "comme le visuel".
+/* Par défaut, la basse résolution était prévue pour être dans  la fenêtre principale.
+Mais va être pris en compte.*/
+
+J'ai un plantage quand je veux enregistrer par un QuickSave ou un Save un Reflex par un nom différent du nom de fichier (la boîte de dialogue du QuickSave propose-t-elle un libellé pour la Reflex ou un nom à donner au fichier). Je pense qu'il peut y avoir des confusions dans ce qui est fait. En tout cas, il y a un bogue parfois. Auto It plante avec le message "Line -1: Error: Error parsing function call".
+/* Le code pour transformer le commentaire en nom de fichier est le suivant:
+Func makeFileName($str)
+  $badchars = StringSplit('*?\/""|<>:', '')
+  _ArrayDelete($badchars, 0)
+  For $char in $badchars
+    $str = StringReplace($str, $char, '')
+  Next
+  Return $str
+EndFunc
+Aurais-je oublié des caractères?
+*/
+Le bogue est reproductible lorsque le fichier My_temporary_nice_function.bmp n'existe pas encore (parce qu'on vient d'en changer le nom ? parce que c'est la première fois ? parce qu'on l'a effacé du disque ?) *ET* en même temps, pour certains noms de fichiers. Peut-être que ça passe en l'absence du fichier tmp si jamais le nom voulu est le même que le dernier nom enregistré. Et que ça plante dès qu'on tente un autre nom. Je ne sais pas trop. À étudier plus en détail. L'existence du fichier ou la non erreur sur ouverture est-elle testée ?
+
+
+à quoi sert le nom donné à une Reflex ou à une formule ?
+Je ne retrouve pas le nom tapé au moment d'un import. 
+/*eh bien c'est pas normal. Si la case "enregistrer le commentaire" était cochée, le commentaire est enregistré. */
+Si c'est le nom du fichier y'a un double emploi avec le reste du formulaire.
+Si c'est un libellé pour mieux repérer notre formule ou notre image : où la retrouve-t-on ensuite ? à quoi ça sert ? 
+/*Le commentaire est enregistré dans le fichier ET sert comme nom de fichier pour la Reflex, dans le cas moyen.*/
+
+Chez moi, aucune image ne s'affiche. (mais elles sont bien calculées, ça se voit dans les fichiers générés ) J'ai testé d'autres scripts qui utilisent GUICtrlSetImage : et tout s'affiche bien. C'est juste avec ton programme à toi que le cadre reste gris.
+/* Je vais voir ce que je peux faire. Je n'ai aucune idée de ce qui peut se passer; Est-ce que tu as  une image dans la boîte de dialogue "à propos"? */
+
+Quand je clique sur le plus ou moins pour changer le "zoom", le facteur d'agrandissement ne change pas et reste sur 2.
+/* Ce n'est pas Plus ou moins, c'est juste un facteur de zoom relatif, mais je crois que tu l'as deviné vu que tu as traduit par Facteur (x) */
+
+Si on clique plusieurs fois sur plus ou moins pour l'agrandissement : faut-il vraiment calculer plusieurs fichiers intermédiaires. Autrement dit, un nouveau clic sur plus ou moins ne peut-il pas interrompre et relancer un calcul en cours ? (les événements devraient être indépendant et cumulables) changer de zoom mettrait une variable globale dans un certain état, variable testée dans la boucle du calcul qui coup l'interromprait immédiatement, une autre variable unique permet de savoir qu'un calcul est toujours en cours et/ou est terminé.
+Ce n'est pas grave mais c'est agaçant.
+/*C'est déjà une feature en prévision (mettre le corps du rendu dans la boucle while)
+Comment interrompre un programme exe? Est-ce fiable? Dois-je modifier le programme lui-même?
+*/
+dans l'éditeur de formule : quelle différence exactement entre <- et DEL ?
+/*La même qu'entre backspace et suppr*/
+
+dans l'éditeur de formule : cliquer sur "draw" si jamais l'option automatique de l'interface principale n'est pas cochée a pour effet de ne pas tracer ni calculer mais juste de fermer la fenêtre. Il faudrait donc remplacer "draw" par "Set". Cela correspondrait mieux à l'action réalisée. (Sachant qu'un changement de formule implique naturellement un calcul si jamais l'option automatique est cochée, bien entendu).
+/*Va être changé */
+========================================
+J'ai lu, c'est intéressant:
+#include <GUIConstants.au3>
+
+Opt("GUIOnEventMode", 1)  ; Change to OnEvent mode 
+$mainwindow = GUICreate("Hello World", 200, 100)
+GUISetOnEvent($GUI_EVENT_CLOSE, "CLOSEClicked")
+GUICtrlCreateLabel("Hello world! How are you?", 30, 10)
+$okbutton = GUICtrlCreateButton("OK", 70, 50, 60)
+GUICtrlSetOnEvent($okbutton, "OKButton")
+GUISetState(@SW_SHOW)
+
+While 1
+  Sleep(100000)  ; Idle around
+WEnd
+
+Func OKButton()
+  ;Note: at this point @GUI_CTRLID would equal $okbutton,
+  ;and @GUI_WINHANDLE would equal $mainwindow
+  MsgBox(0, "GUI Event", "You pressed OK!")
+EndFunc
+
+Func CLOSEClicked()
+  ;Note: at this point @GUI_CTRLID would equal $GUI_EVENT_CLOSE, 
+  ;and @GUI_WINHANDLE would equal $mainwindow 
+  MsgBox(0, "GUI Event", "You clicked CLOSE! Exiting...")
+  Exit
+EndFunc
+
+/*Yep, j'utilise déjà*/
+========================================
+J'ai lu, c'est intéressant:
+Switch @OSLang
+	Case "040c","080c","0c0c","100c","140c","180c"
+	; Français - standard, belge, canadien, suisse, luxembourgeois ou monégasque
+		$TranslationFileName = 'FR.ini'
+	Case Else
+    ;Default is English
+		$TranslationFileName = 'EN.ini'
+EndSwitch
+
+tout le monde n'a pas son OS dans sa langue maternelle, je ne dis pas que ça remplace un menu, je dis que c'est une alternative ou un complément intéressant.
+/*Yep, c'est intéressant*/
+========================
+J'ai lu et c'est intéressant (oui je sais, ça n'a pas directement utilité dans ton cas, mais ça peut servir pour d'autres scripts)
+
+les scripts peuvent être compilés avec l'extension .a3x. Ils devront alors être exécutés par la commande "AutoIt.exe filename.a3x". Donc AutoIt3.exe devra être présent sur la machine exécutante. Les fichiers .a3x contiennent le script lui-même ainsi que les fichiers #include et ceux des FileInstall. Ce format permet de distribuer des fichiers plus petits car ils n'incluent pas le fichier Autoit3.exe (qui sinon sont auto-incluent dans les .exe).
+
+Si la machine destinataire dispose de AuotIt, autant diminuer la taille des scripts. Cela reviendrait plus ou moins à créer un zip avec le script et les fichiers annexes (images, etc.) : je ne sais pas si c'est plus rentable d'avoir un fichier plutôt que plusieurs séparés importés depuis un zip. J'ai juste lu, pas essayé.
+
+/* C'est le même problème que d'inclure une DLL dans le fichier exe ... */
+=============================
+
+ le fichier formulaire.txt contient plusieurs fois la même fonction, faudrait tester qu'elle n'existe pas déjà "au caractère près" : auquel cas pas besoin de l'ajouter (sauf si mise sous un libellé différent)
+/* Tu es censé donner un nom différent pour chaque Reflex en commentaire... sinon c'est difficile de s'y retrouver, non? */

@@ -1,0 +1,29 @@
+Le seul truc qui manque encore par rapport à la version pocket pc, c'est
+1) Un zoom animé
+2) Un éditeur de formule convivial.
+
+Mais ce qu'il y a en plus, c'est
+1) Gestion des sauvegardes en Jpeg
+2) Sauvegarde de session (fichier ini)
+3) Preview/non preview mode (utile pour les grosses résolutions ;-)
+4) Quicksave: En un clic et un input, tu peux sauvegarder et la formule et la Reflex.
+5) Une boîte about box avec des liens hypertextes
+6) Possibilité de revenir à des valeurs par défaut (reset)
+
+
+Version 2.5.01 beta:
+- Multilangage intégré
+- Ajout de la formule dans les fichiers Jpeg (commentaire XP).
+- Drag & drop Jpeg Reflex dans l'application pour l'ouvrir
+- Ouverture conviviale du fichier de formule
+- Ajout d'une graine pour les nombres aléatoires.
+- Conseils (hints)
+- Ajout du support des nombres en format scientifique.
+- Indépendance des fenêtres d'édition, d'import, d'à propos.
+- Indépendance du mécanisme de génération.
+- Code couleur des reflex disponible
+- Correction de bogues important (formule = H faisait planter le générateur)
+... et plein d'autres petites nouveautés
+
+bogues connus:
+- Appuyer plusieurs fois de suite sur "Plus" ne marche pas encore

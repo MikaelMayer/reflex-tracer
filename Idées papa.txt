@@ -1,0 +1,6 @@
+-Fractaliser avec curseur => Faire en sorte que ça soit rapide.
+-Changer les couleurs de base
+
+
+
+CTRL+Z / CTRL+Y : formule précédente, formule suivante

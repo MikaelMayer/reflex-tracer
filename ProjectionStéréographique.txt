@@ -1,0 +1,5 @@
+(z*cos($a/2) + sin($a/2))/(cos($a/2)-z*sin($a/2))
+
+
+
+pour $a de 0 à 2*pi, on découvre tout l'espace complexe.
