@@ -3,7 +3,7 @@ reflex-tracer
 
 Reflex Tracer in C++ / AutoIt3
 
-![Interface in 2.8](ReflexRendererInterfaceV2.8.png)
+![Interface in 2.8](ReflexRendererInterfaceV2.8.jpg)
 
 ReflexRenderInterface  2008/07/05
 
@@ -58,13 +58,10 @@ But this is not finished yet. Be patient.
 Q: I got some problems unmentionned in the FAQ
 A: If you really need to contact the creator, go to the About box.
 
- /************************************
- *    End-User Licence Agreement     *
- ************************************/
+End-User Licence Agreement
+**************************
 
 * The author of this software cannot be responsible for any damage that the application could have caused to your machine, or to any machine the program is running on.
 * You may freely redistribute this copy of the software, but not modify it. To modify the copy, contact the author for permission.
-* You may uncompile the main binary (the interface), but this is rather a bad idea. Consider asking the sources to the author.
-* The core program is not yet open-source.
 * You cannot sell any part of this program.
 * Don't be evil. Be fair.
