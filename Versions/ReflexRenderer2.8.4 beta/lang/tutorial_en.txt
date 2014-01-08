@@ -1,0 +1,66 @@
+; Duration before animation, type of animation, duration after animation (if auto-play)
+
+@@0,,0
+Bonjour et bienvenue dans ce tutorial du Générateur de Reflex !
+Préparez-vous à explorer les fonctions complexes.
+Cliquez sur "Lire" ci-dessous pour commencer.
+
+@4,,0
+L'image à droite est une fonction complexe.
+Nous allons d'abord voir comment apprécier les différents niveaux de détail.
+
+@6,Miniature,2
+Le tracé prenant du temps, nous allons générer 4 fois moins de pixels pour aller plus vite.
+Pour cela, activons l'option "miniature".
+
+@3,Zoomout1,2
+Prenons un peu de recul en zoomant en arrière.
+Le facteur de zoom est indiqué et vaut actuellement 2.
+
+@3,Zoomin1,2
+Augmentons le facteur de zoom à 4 et zoomons en avant avec ce nouveau facteur.
+
+@4,Zoomout2,2
+Maintenant, nous pouvons aussi jouer avec le paramètre du "zoom absolu".
+Il est actuellement à 1. En le changeant de 1 à 6, nous zoomons directement 6 fois en arrière.
+
+@3,Zoomin2,2
+Si nous le changeons de 6 à 2, cela équivaut à un zoom 3 fois avant.
+
+@3,Zoomin3,2
+Si nous le changeons de 2 à 0.5, cela équivaut à un zoom quatre fois en avant.
+
+@5,Zoomout3,5
+Nous pouvons revenir à la vue précédente en appuyant sur "précédent".
+Voilà, nous avons fait le tour des zooms avec les boutons.
+Prochaine section, nous verrons comment nous déplacer avec la souris.
+
+@@3,Navig1,1
+Réinitialisons la fenêtre.
+Nous allons explorer la fonction avec la souris : Clic gauche sur l'image pour zoomer, clic droit pour dézoomer.
+
+@3,Rectangle1, 1
+Nous pouvons aussi activer la visite par rectangles de zooms, en activant préalablement ce mode de navigation.
+
+@@4,OpenSaveDialog,1
+Dans le cas où une image nous plait (chargeons une vue personnalisée), nous pouvons la sauvegarder.
+Pour cela, visitons les options correspondantes.
+
+@4,SaveDialogPng,1
+Par exemple, nous spécifions le format PNG, et nous gardons le répertoire par défaut.
+Tant qu'on y est, donnons lui un nom: "Montagne".
+
+@4,SaveAll,3
+Appuyons sur "Enregistrer tout", qui enregistre donc l'image au format PNG, ainsi que la formule dans un fichier texte à côté.
+Remarquez que l'image est recalculée en haute résolution.
+
+@4,SaveQuick,1
+Fermons la fenêtre d'enregistrement.
+Si nous changeons l'image, il suffit de cliquer sur "Enregistrer" et de spécifier un nouveau commentaire.
+
+@4,,1
+Nous pouvons alors charger l'image à partir du fichier en le glissant dans la fenêtre par exemple.
+
+
+
+

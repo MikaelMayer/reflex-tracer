@@ -1,0 +1,188 @@
+tu gardes le fichier _1_ pour mémoire (celui que tu m'as envoyé est en fait toujours le _1_)
+
+tu le duplique en Notes.txt sans préfixe : dans lequel tu peux effacer au fur et à mesure que les choses sont faites.
+
+ceci est le _2_ il ajoute des compléments. que tu peux copier-coller dans Notes.txt
+
+J'attends une V2 du logiciel avant de boucler ma V2 pour la traduction. Si tu peux n'ajouter les nouveaux texte qu'à la fin ou au début, ça sera plus facile pour moi. Sinon ce sera moins facile. :)
+
+==================================================
+/* Je ne peux pas caler les objets localement par rapport à leur groupe. Si tu sais comment faire, je suis preneur*/
+
+--> à tester (non certain) dans l'onglet  Styles du Object Inspector 
+
+SS_RIGHT semble justifier le texte à droite dans sa boîte
+
+SS_RIGHTJUST semble utiliser la référence de position par le bord droit
+ 	(quand on redimensionne la fenêtre)
+tout est décrit ici : http://www.autoitscript.com/autoit3/docs/appendix/GUIStyles.htm
+--> Specifies that the lower right corner of a static control with the SS_BITMAP or SS_ICON style is to remain fixed when the control is resized. Only the top and left sides are adjusted to accommodate a new bitmap or icon.
+
+En tout cas au pire : SS_RIGHT  justifie le texte à droite dans la boîte de texte, donc en occupant toute la largeur restante et en mettant cette option, ça devrait déjà rendre un résultat intéressant.
+
+ fenêtre ->| [________texte] [bouton______] |<-fenêtre
+               SS_RIGHT        SS_LEFT ou SS_CENTER
+
+J'ajoute, après coup, tout en laissant ma première réponse ci-dessus, que ça vaut le coup dans l'onglet properties, d'aller développer la propriété Resizing.
+Il y a entre autre la possibilité d'activer DockRight qui devrait aller dans le sens cherché
+(je n'ai pas lu la doc, j'ai présumé que ça devait utiliser le bord pour référence quand on retaille la fenêtre, si tu active aussi DockLeft je pense qu'il élargie la largeur totale du texte de façon à coller les bords gauche et droit... à tenter aussi, je crois que ça a l'air de marcher.
+
+ Pour démo je t'ai fait un petit script Form1.au3 :  je pense que c'est ce que tu cherches.
+
+==================================================
+Je verrais bien un format de fichier formulas.txt du genre :
+
+Nom significatif 1
+sin(x)+cos(y)
+LMSQKDMLSQKdmlkazemlk<- les options de rendu
+
+Nom significatif 2
+formule2()
+LMSQKDMLSQKdmlkazemlk<- les options 2
+
+...
+La fenêtre de choix d'une formule proposerait :
+Nom significatif 1
+Nom significatif 2
+...
+
+Cela donnerait une utilité au "comment" de la formule au moment de l'enregistrement
+
+Par contre, le commentaire associé à l'image ne sert à rien, sauf si le texte est incrusté dans l'image, ou si un fichier mémorise les comment avec le chemin de l'image pour les rouvrir dans le logiciel. Mais comme on peut vouloir utiliser les images... 
+Moi en fait, je propose ceci
+  -> on sauvegarde l'image toto.jpg
+  -> est créé au même endroit un toto.txt contenant:
+le "comment"
+la formule qui l'a créée
+les options d'affichage
+
+Si tu ne fais pas cela, alors autant virer le "comment" sur les images, ça ne sert à rien puisque l'info est perdue. Note : à l'inverse si ces fichiers txt existent, ils devront pouvoir être ouverts par l'application pour récupérer la formule au même titre qu'un vrai fichier formule. Tu noteras qu'en fait les deux sont au même format. Je ne suis qu'en train de suggérer qu'un fichier formule individuel soit créé automatiquement au moment de l'enregistrement d'une image. Cela permet de faire facilement des associations, des présentations... pour ne pas perdre l'info.
+
+En cas de copie de REFLEX, ce fichier texte est copié lui aussi s'il existe avec le nouveau nom lui aussi.
+
+de plus, puisque les formules s'accumulent dans le même fichier formula, il serait bon non pas de parler *d'enregistrer* une formule dans un fichier mais à la place de parler *d'ajouter* une formule dans le fichier formula
+
+==================================================
+Le seul format pour les images REFLEX disponible à la souris est jpeg (dans le menu déroulant, dans les options de sauvegarde). Je n'ai pas accès aux autres, sauf au clavier. Je peux sélectionner la liste en cliquant dessus, ensuite je dois utiliser les flêches. Aucun menu déroulant ne s'ouvre.
+/* Je n'arrive pas à reproduire ce bug. Autant le clavier que la souris marche chez moi.
+   Son code est le suivant:
+   $id_reflex_extension = GUICtrlCreateCombo("Jpeg (*.jpg)", 167, 268, 97, 25)
+  GUICtrlSetData(-1, "Bitmap (*.bmp)")
+*/
+
+
+Je n'arrive pas à créer de liste déroulante fonctionne avec Koda chez moi. Je ne sais pas encore répondre.
+
+===============================================
+/*
+Oui, les deux premiers "Save" et "Just save the options" enregistrent les options.
+*/
+
+j'en tiens compte pour la prochaine traduction
+
+===============================================
+Depuis le QuickSave,
+proposer un bouton "saving options" qui renverrait directement vers toutes la boîte de sauvagerde complète. (au lieu de dire quoi faire on lui donne le bouton pour faire). 
+/* ça a l'air mieux, à part le fait qu'on peut effectivement re-générer la (LA = Une représentation ;-) Reflex depuis cette boîte de dialogue "Saving options".
+Trouvons un meilleur titre.
+*/
+
+bah, c'est un menu QuickSave, on nomme ce bouton Full Save 
+ou alors Go To Full Save
+
+===============================================
+/*
+C'est en fait par expérience que j'ai ajouté un bouton "ouvrir fichier" et "nouveau" fichier, sachant que normalement, un utilisateur après quelques minutes va se mettre à générer des Reflex à tout bout de champ, et va vouloir les enregistrer dans le même fichier.
+Plusieurs fichiers séparés => c'est mauvais. C'est pour ça que je ne pense pas faire un bouton 
+"convertir le commentaire en nom de fichier de formule".
+Mais il me semble en outre que tu as eu certains problèmes que je n'ai pas eu
+est-ce dû à windows 2000?
+*/
+
+je comprends. N'empêche que le bouton nouveau n'est pas utile, on cherche une utilité autre. On peut changer le nom et créer un nouveau fichier directement sans le bouton nouveau. Alors autant l'enlever il perturbe l'utilisateur qui ne t'a pas côtoyé.
+
+================================================
+dans l'éditeur de formules, ce serait sympa que la case "inverse" se décoche automatiquement après un clic sur une fonction.
+/* ça se discute ? Est-ce une juste préférence ou bien un standard?
+Il va y avoir deux types d'utilisateurs.
+- Le premier cherche de l'art, il va essayer des formules au hasard.
+- Le deuxième veut taper une formule précise. Est-ce que les fonctions réciproques sont moins utilisées?
+*/
+
+J'aurais tendance à dire que oui, les fonctions réciproques sont moins utilisées. Ou plus rarement utilisées l'une après l'autre. J'imagine faire du cos(sin(z)) ou du sin-1(cos)  mais plus rarement du sin-1(cos-1).
+La question n'est pas de savoir s'il arrive plus rarement d'avoir une fonction inverse mais plutôt s'il arrive plus rarement d'en avoir deux de suite ! Cette case joue en quelque sorte le rôle de la touche Shift des calculatrice : c'est donc un mode de fonctionnement habituel.
+
+=================================================
+//TODO: Répondre que 
+est-ce voulu d'avoir deux fois %S dans la chaîne
+'%s' is not a valid filename.%s Saving canceled.
+? (j'ai supposé que non)
+/* c'est débile, mais c'est pour avoir une seule chaîne et un retour automatique à la ligne @CRLF
+MsgBox(0, $Error, StringFormat($__s__is_not_a_valid_filename__s_Saving_canceled_, $filename, @CRLF))
+une autre idée?
+ */
+
+Heu, ... bah, à vérifier : le format .ini vers lequel on se lance est convenu. N'y a-t-il pas une convention par défaut pour inclure des sauts de ligne (genre \n) ? Si oui mieux vaut respecter cette convention plutôt qu'en inventer une. Se documenter avant choix.
+ Sinon, non, pour l'instant c'est à moi de remettre le %s
+
+==================================================
+High-resolution reflex=Recalculer en HD
+Copy last reflex=Dernier visuel
+/* J'aime bien */
+
+Alors, on garde !
+==================================================
+
+J'ai un plantage quand je veux enregistrer par un QuickSave ou un Save un Reflex par un nom différent du nom de fichier
+/*Func makeFileName($str)
+Aurais-je oublié des caractères?
+*/
+
+Je ne pense pas que ça vienne de cette fonction car le problème n'existe pas avec un nom en particulier mais avec l'absence du  My_temporary_nice_function.bmp 
+ ET qu'on tente un nom de fichier du nom déjà enregistré dans le Save complet.
+ 
+=====================================================
+à quoi sert le nom donné à une Reflex ou à une formule ?
+Je ne retrouve pas le nom tapé au moment d'un import. 
+/*eh bien c'est pas normal. Si la case "enregistrer le commentaire" était cochée, le commentaire est enregistré. */
+
+il n'est pas mis dans le fichier formulas. Non.
+=====================================================
+/* Je vais voir ce que je peux faire. Je n'ai aucune idée de ce qui peut se passer; Est-ce que tu as  une image dans la boîte de dialogue "à propos"? */
+
+oui, je l'ai celle-là, seule l'image calculée est absente.
+====================================================
+
+Quand je clique sur le plus ou moins pour changer le "zoom", le facteur d'agrandissement ne change pas et reste sur 2.
+/* Ce n'est pas Plus ou moins, c'est juste un facteur de zoom relatif, mais je crois que tu l'as deviné vu que tu as traduit par Facteur (x) */
+
+n'empêche que le facteur n'est pas modifié juste au dessus quand je clique sur les deux boutons !
+Le facteur 2 affiché ne devrait plus être 2
+
+J'ajoute un nouveau bogue : en cliquant sur Plus ou Moins il recalcule automatiquement même si le recalcul automatique est décoché !
+
+J'ajoute : quand le mode automate est désactivé, il serait bon que le bouton CALCULER change de couleur pour signaler qu'un recalcul est nécessaire (et surtout que l'image affichée ne correspond plus aux options visibles). D'ailleurs en cas de sauvegarde avant un recalcul manuel : que doit faire le programme ?  Recalculer automatiquement ou enregistrer les anciennes options ?  (ce qui signifierait qu'il faudrait les garder en mémoire). Je pense qu'un recalcul est convenable. Ce qui signifie bien qu'il faut conserver l'information que les options ont été modifiées et qu'un recalcul est attendu.
+===================================================
+
+Si on clique plusieurs fois sur plus ou moins pour l'agrandissement : faut-il vraiment calculer plusieurs fichiers intermédiaires. 
+/*C'est déjà une feature en prévision (mettre le corps du rendu dans la boucle while)
+Comment interrompre un programme exe? Est-ce fiable? Dois-je modifier le programme lui-même?
+*/
+feature --> amélioration (dans ce contexte)
+tant mieux alors, mais j'oubliais en l'écrivant que tu passais par un exe externe !
+
+--> temporiser ?  Si le mode auto est désactivé : on attend un calcul manuel.
+Si le mode auto est actif : alors on attend 1 seconde avant de lancer ce recalcul. Temporisation que l'on initialise bien entendu si jamais on retouche au + et -   (je dis une seconde : le bon réglage est peut-être 1,5 : à régler)
+
+=============================================
+dans l'éditeur de formule : quelle différence exactement entre <- et DEL ?
+/*La même qu'entre backspace et suppr*/
+
+alors je devrais traduire DEL par SUPPR
+==============================================
+ le fichier formulaire.txt contient plusieurs fois la même fonction, faudrait tester qu'elle n'existe pas déjà "au caractère près" 
+/* Tu es censé donner un nom différent pour chaque Reflex en commentaire... sinon c'est difficile de s'y retrouver, non? */
+
+peu importe ce que l'utilisateur est supposé faire. Il ne faut jamais supposer un comportement de sa part. tout ce qui est impossible arrivera : il faut le gérer ;)
+
+ce n'est pas si dur à tester. On regarde si la fonction ET son nom ET son rendu y sont déjà, si oui, on ne l'ajoute pas (et éventuellement MsgBox pour le dire). C'est idiot d'avoir plusieurs fois la même chose. Par contre, si nom différent avec même formule+rendu --> on enregistre mais avec information (à envisager).

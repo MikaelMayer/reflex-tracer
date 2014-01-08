@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<object type="TAForm" name="ID_EDITFORMULA">
+	<properties>
+		<property name="Left" vt="Int16">300</property>
+		<property name="Top" vt="Int16">131</property>
+		<property name="Width" vt="Int16">255</property>
+		<property name="Height" vt="Int16">384</property>
+		<property name="Caption" vt="String">%__edit_formula__%</property>
+		<property name="Color" vt="Ident">clBtnFace</property>
+		<property name="Font.Charset" vt="Ident">DEFAULT_CHARSET</property>
+		<property name="Font.Color" vt="Ident">clWindowText</property>
+		<property name="Font.Height" vt="Int8">-11</property>
+		<property name="Font.Name" vt="String">MS Sans Serif</property>
+		<property name="Font.Style" vt="Set"/>
+		<property name="OldCreateOrder" vt="False">False</property>
+		<property name="Visible" vt="True">True</property>
+		<property name="Style" vt="Int32">-1798373376</property>
+		<property name="ExStyle" vt="Int16">256</property>
+		<property name="Version" vt="String">1.03</property>
+		<property name="Description" vt="String">A standard Windows Form.</property>
+		<property name="FormOptOnEvent" vt="True">True</property>
+		<property name="FormOptExpVars" vt="True">True</property>
+		<property name="FormOptPopulate" vt="True">True</property>
+		<property name="FormOptVarsForSet" vt="True">True</property>
+		<property name="FormOptIndentChar" vt="Int8">1</property>
+		<property name="FormOptIndentCount" vt="Int8">2</property>
+		<property name="FormOptIndentInit" vt="Int8">1</property>
+		<property name="FormOptVarScope" vt="Int8">1</property>
+		<property name="PixelsPerInch" vt="Int8">96</property>
+		<property name="TextHeight" vt="Int8">13</property>
+	</properties>
+	<components>
+		<object type="TAButton" name="IDC_F_SIN">
+			<properties>
+				<property name="Left" vt="Int8">8</property>
+				<property name="Top" vt="Int16">176</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__sin_hint__%</property>
+				<property name="Caption" vt="String">sin</property>
+				<property name="TabOrder" vt="Int8">15</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_Z">
+			<properties>
+				<property name="Left" vt="Int8">8</property>
+				<property name="Top" vt="Int16">128</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">z</property>
+				<property name="TabOrder" vt="Int8">1</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_X">
+			<properties>
+				<property name="Left" vt="Int8">32</property>
+				<property name="Top" vt="Int16">128</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__x_hint__%</property>
+				<property name="Caption" vt="String">x</property>
+				<property name="TabOrder" vt="Int8">2</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_Y">
+			<properties>
+				<property name="Left" vt="Int8">56</property>
+				<property name="Top" vt="Int16">128</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__y_hint__%</property>
+				<property name="Caption" vt="String">y</property>
+				<property name="TabOrder" vt="Int8">3</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAEdit" name="IDC_EDIT1">
+			<properties>
+				<property name="Left" vt="Int8">8</property>
+				<property name="Top" vt="Int8">8</property>
+				<property name="Width" vt="Int16">233</property>
+				<property name="Height" vt="Int8">113</property>
+				<property name="Lines.Strings" vt="List">
+					<list>
+						<li vt="String">Edit1</li>
+					</list>
+				</property>
+				<property name="TabOrder" vt="Int8">0</property>
+				<property name="Visible" vt="False">False</property>
+				<property name="OnChange" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1344344132</property>
+				<property name="CtrlExStyle" vt="Int16">512</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_LEFT_PARENTHESIS">
+			<properties>
+				<property name="Left" vt="Int8">80</property>
+				<property name="Top" vt="Int16">128</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">( )</property>
+				<property name="TabOrder" vt="Int8">4</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_RIGHT_PARENTHESIS">
+			<properties>
+				<property name="Left" vt="Int8">104</property>
+				<property name="Top" vt="Int16">128</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">)</property>
+				<property name="TabOrder" vt="Int8">5</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_PLUS">
+			<properties>
+				<property name="Left" vt="Int8">8</property>
+				<property name="Top" vt="Int16">152</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">+</property>
+				<property name="TabOrder" vt="Int8">8</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_MOINS">
+			<properties>
+				<property name="Left" vt="Int8">32</property>
+				<property name="Top" vt="Int16">152</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">-</property>
+				<property name="TabOrder" vt="Int8">9</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_FOIS">
+			<properties>
+				<property name="Left" vt="Int8">56</property>
+				<property name="Top" vt="Int16">152</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">*</property>
+				<property name="TabOrder" vt="Int8">10</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_DIV">
+			<properties>
+				<property name="Left" vt="Int8">80</property>
+				<property name="Top" vt="Int16">152</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">/</property>
+				<property name="TabOrder" vt="Int8">11</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_EXPOSANT">
+			<properties>
+				<property name="Left" vt="Int8">104</property>
+				<property name="Top" vt="Int16">152</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">^</property>
+				<property name="TabOrder" vt="Int8">12</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_COS">
+			<properties>
+				<property name="Left" vt="Int8">44</property>
+				<property name="Top" vt="Int16">176</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__cos_hint__%</property>
+				<property name="Caption" vt="String">cos</property>
+				<property name="TabOrder" vt="Int8">16</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_TAN">
+			<properties>
+				<property name="Left" vt="Int8">80</property>
+				<property name="Top" vt="Int16">176</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__tan_hint__%</property>
+				<property name="Caption" vt="String">tan</property>
+				<property name="TabOrder" vt="Int8">17</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_SINH">
+			<properties>
+				<property name="Left" vt="Int8">8</property>
+				<property name="Top" vt="Int16">200</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__sinh_hint__%</property>
+				<property name="Caption" vt="String">sinh</property>
+				<property name="TabOrder" vt="Int8">20</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_COSH">
+			<properties>
+				<property name="Left" vt="Int8">44</property>
+				<property name="Top" vt="Int16">200</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__cosh_hint__%</property>
+				<property name="Caption" vt="String">cosh</property>
+				<property name="TabOrder" vt="Int8">21</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_TANH">
+			<properties>
+				<property name="Left" vt="Int8">80</property>
+				<property name="Top" vt="Int16">200</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__tanh_hint__%</property>
+				<property name="Caption" vt="String">tanh</property>
+				<property name="TabOrder" vt="Int8">22</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_LN">
+			<properties>
+				<property name="Left" vt="Int8">8</property>
+				<property name="Top" vt="Int16">224</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__ln_hint__%</property>
+				<property name="Caption" vt="String">ln</property>
+				<property name="TabOrder" vt="Int8">23</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_EXP">
+			<properties>
+				<property name="Left" vt="Int8">44</property>
+				<property name="Top" vt="Int16">224</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__exp_hint__%</property>
+				<property name="Caption" vt="String">exp</property>
+				<property name="TabOrder" vt="Int8">24</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_SQRT">
+			<properties>
+				<property name="Left" vt="Int8">80</property>
+				<property name="Top" vt="Int16">224</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__sqrt_hint__%</property>
+				<property name="Caption" vt="String">sqrt</property>
+				<property name="TabOrder" vt="Int8">25</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_O">
+			<properties>
+				<property name="Left" vt="Int8">8</property>
+				<property name="Top" vt="Int16">248</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">o(f(z), g(z)) = f(g(z))</property>
+				<property name="Caption" vt="String">o</property>
+				<property name="TabOrder" vt="Int8">26</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_OO">
+			<properties>
+				<property name="Left" vt="Int8">44</property>
+				<property name="Top" vt="Int16">248</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">oo(f(z), 4) = f(f(f(f(z))))</property>
+				<property name="Caption" vt="String">oo</property>
+				<property name="TabOrder" vt="Int8">27</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_RANDF">
+			<properties>
+				<property name="Left" vt="Int8">80</property>
+				<property name="Top" vt="Int16">248</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__randf_hint__%</property>
+				<property name="Caption" vt="String">randf</property>
+				<property name="TabOrder" vt="Int8">28</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_SUM">
+			<properties>
+				<property name="Left" vt="Int8">8</property>
+				<property name="Top" vt="Int16">272</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">sum(f($x, z), $x, 4, 10, 3) = f(4, z) + f(7, z) + f(10, z)</property>
+				<property name="Caption" vt="String">sum</property>
+				<property name="TabOrder" vt="Int8">30</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_PROD">
+			<properties>
+				<property name="Left" vt="Int8">44</property>
+				<property name="Top" vt="Int16">272</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">prod(f($x, z), $x, 5, 9, 2) = f(5, z) * f(7, z) * f(9, z)</property>
+				<property name="Caption" vt="String">prod</property>
+				<property name="TabOrder" vt="Int8">31</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_RANDH">
+			<properties>
+				<property name="Left" vt="Int8">80</property>
+				<property name="Top" vt="Int16">272</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__randh_hint__%</property>
+				<property name="Caption" vt="String">randh</property>
+				<property name="TabOrder" vt="Int8">32</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_COMP">
+			<properties>
+				<property name="Left" vt="Int8">8</property>
+				<property name="Top" vt="Int16">296</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">Comp(f($x, z), $x, 5, 3) = f(f(f(5, z), z), z)</property>
+				<property name="Caption" vt="String">comp</property>
+				<property name="TabOrder" vt="Int8">34</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_RETOUR_ARRIERE">
+			<properties>
+				<property name="Left" vt="Int16">136</property>
+				<property name="Top" vt="Int16">128</property>
+				<property name="Width" vt="Int8">49</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">&lt;-</property>
+				<property name="TabOrder" vt="Int8">6</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE7">
+			<properties>
+				<property name="Left" vt="Int16">144</property>
+				<property name="Top" vt="Int16">200</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">7</property>
+				<property name="TabOrder" vt="Int8">36</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_CIRCLE">
+			<properties>
+				<property name="Left" vt="Int8">44</property>
+				<property name="Top" vt="Int16">296</property>
+				<property name="Width" vt="Int8">37</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">circle(z) = conj(z) - 1/z</property>
+				<property name="Caption" vt="String">circle</property>
+				<property name="TabOrder" vt="Int8">35</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE8">
+			<properties>
+				<property name="Left" vt="Int16">168</property>
+				<property name="Top" vt="Int16">200</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">8</property>
+				<property name="TabOrder" vt="Int8">37</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE9">
+			<properties>
+				<property name="Left" vt="Int16">192</property>
+				<property name="Top" vt="Int16">200</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">9</property>
+				<property name="TabOrder" vt="Int8">38</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE_PI">
+			<properties>
+				<property name="Left" vt="Int16">216</property>
+				<property name="Top" vt="Int16">200</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">p</property>
+				<property name="Font.Charset" vt="Ident">SYMBOL_CHARSET</property>
+				<property name="Font.Color" vt="Ident">clWindowText</property>
+				<property name="Font.Height" vt="Int8">-13</property>
+				<property name="Font.Name" vt="String">Symbol</property>
+				<property name="Font.Style" vt="Set"/>
+				<property name="ParentFont" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">39</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_SUPPRIMER">
+			<properties>
+				<property name="Left" vt="Int16">136</property>
+				<property name="Top" vt="Int16">152</property>
+				<property name="Width" vt="Int8">49</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">%__del_button__%</property>
+				<property name="TabOrder" vt="Int8">13</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE4">
+			<properties>
+				<property name="Left" vt="Int16">144</property>
+				<property name="Top" vt="Int16">224</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">4</property>
+				<property name="TabOrder" vt="Int8">40</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE5">
+			<properties>
+				<property name="Left" vt="Int16">168</property>
+				<property name="Top" vt="Int16">224</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">5</property>
+				<property name="TabOrder" vt="Int8">41</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE6">
+			<properties>
+				<property name="Left" vt="Int16">192</property>
+				<property name="Top" vt="Int16">224</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">6</property>
+				<property name="TabOrder" vt="Int8">42</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE_J">
+			<properties>
+				<property name="Left" vt="Int16">216</property>
+				<property name="Top" vt="Int16">224</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">exp(i*2pi/3)</property>
+				<property name="Caption" vt="String">j</property>
+				<property name="Font.Charset" vt="Ident">ANSI_CHARSET</property>
+				<property name="Font.Color" vt="Ident">clWindowText</property>
+				<property name="Font.Height" vt="Int8">-13</property>
+				<property name="Font.Name" vt="String">Times New Roman</property>
+				<property name="Font.Style" vt="Set">fsItalic</property>
+				<property name="ParentFont" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">43</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE1">
+			<properties>
+				<property name="Left" vt="Int16">144</property>
+				<property name="Top" vt="Int16">248</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">1</property>
+				<property name="TabOrder" vt="Int8">44</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE2">
+			<properties>
+				<property name="Left" vt="Int16">168</property>
+				<property name="Top" vt="Int16">248</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">2</property>
+				<property name="TabOrder" vt="Int8">45</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE3">
+			<properties>
+				<property name="Left" vt="Int16">192</property>
+				<property name="Top" vt="Int16">248</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">3</property>
+				<property name="TabOrder" vt="Int8">46</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE_I">
+			<properties>
+				<property name="Left" vt="Int16">216</property>
+				<property name="Top" vt="Int16">248</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">i</property>
+				<property name="Font.Charset" vt="Ident">ANSI_CHARSET</property>
+				<property name="Font.Color" vt="Ident">clWindowText</property>
+				<property name="Font.Height" vt="Int8">-13</property>
+				<property name="Font.Name" vt="String">Times New Roman</property>
+				<property name="Font.Style" vt="Set">fsItalic</property>
+				<property name="ParentFont" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">47</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_CHIFFRE0">
+			<properties>
+				<property name="Left" vt="Int16">144</property>
+				<property name="Top" vt="Int16">272</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">0</property>
+				<property name="TabOrder" vt="Int8">48</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_POINT">
+			<properties>
+				<property name="Left" vt="Int16">168</property>
+				<property name="Top" vt="Int16">272</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">.</property>
+				<property name="Font.Charset" vt="Ident">DEFAULT_CHARSET</property>
+				<property name="Font.Color" vt="Ident">clWindowText</property>
+				<property name="Font.Height" vt="Int8">-11</property>
+				<property name="Font.Name" vt="String">MS Sans Serif</property>
+				<property name="Font.Style" vt="Set">fsBold</property>
+				<property name="ParentFont" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">49</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_VIRGULE">
+			<properties>
+				<property name="Left" vt="Int16">192</property>
+				<property name="Top" vt="Int16">272</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">,</property>
+				<property name="TabOrder" vt="Int8">50</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_DOLLARS">
+			<properties>
+				<property name="Left" vt="Int16">216</property>
+				<property name="Top" vt="Int16">272</property>
+				<property name="Width" vt="Int8">25</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__dollar_hint__%</property>
+				<property name="Caption" vt="String">$</property>
+				<property name="TabOrder" vt="Int8">51</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_CONJ">
+			<properties>
+				<property name="Left" vt="Int16">208</property>
+				<property name="Top" vt="Int16">296</property>
+				<property name="Width" vt="Int8">33</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__conj_hint__%</property>
+				<property name="Caption" vt="String">conj</property>
+				<property name="TabOrder" vt="Int8">54</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_IMAG">
+			<properties>
+				<property name="Left" vt="Int16">176</property>
+				<property name="Top" vt="Int16">296</property>
+				<property name="Width" vt="Int8">33</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__imag_hint__%</property>
+				<property name="Caption" vt="WString">Б</property>
+				<property name="Font.Charset" vt="Ident">SYMBOL_CHARSET</property>
+				<property name="Font.Color" vt="Ident">clWindowText</property>
+				<property name="Font.Height" vt="Int8">-11</property>
+				<property name="Font.Name" vt="String">Symbol</property>
+				<property name="Font.Style" vt="Set"/>
+				<property name="ParentFont" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">53</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_REAL">
+			<properties>
+				<property name="Left" vt="Int16">144</property>
+				<property name="Top" vt="Int16">296</property>
+				<property name="Width" vt="Int8">33</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__real_hint__%</property>
+				<property name="Caption" vt="WString">В</property>
+				<property name="Font.Charset" vt="Ident">SYMBOL_CHARSET</property>
+				<property name="Font.Color" vt="Ident">clWindowText</property>
+				<property name="Font.Height" vt="Int8">-11</property>
+				<property name="Font.Name" vt="String">Symbol</property>
+				<property name="Font.Style" vt="Set"/>
+				<property name="ParentFont" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">52</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TACheckbox" name="ID_INV">
+			<properties>
+				<property name="Left" vt="Int8">120</property>
+				<property name="Top" vt="Int16">179</property>
+				<property name="Width" vt="Int8">65</property>
+				<property name="Height" vt="Int8">17</property>
+				<property name="Hint" vt="String">%__inv_hint__%</property>
+				<property name="Caption" vt="String">inv</property>
+				<property name="TabOrder" vt="Int8">18</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342242819</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="ID_DRAW">
+			<properties>
+				<property name="Left" vt="Int16">192</property>
+				<property name="Top" vt="Int16">128</property>
+				<property name="Width" vt="Int8">49</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__set_button_hint__%</property>
+				<property name="Caption" vt="String">%__set_button__%</property>
+				<property name="TabOrder" vt="Int8">7</property>
+				<property name="OnClick" vt="String">ID_DRAWClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="ID_CANCEL">
+			<properties>
+				<property name="Left" vt="Int16">192</property>
+				<property name="Top" vt="Int16">152</property>
+				<property name="Width" vt="Int8">49</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">%__quit_button__%</property>
+				<property name="TabOrder" vt="Int8">14</property>
+				<property name="OnClick" vt="String">ID_CANCELClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_RESET">
+			<properties>
+				<property name="Left" vt="Int16">192</property>
+				<property name="Top" vt="Int16">176</property>
+				<property name="Width" vt="Int8">49</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">%__reset_formula__%</property>
+				<property name="TabOrder" vt="Int8">19</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAInput" name="IDC_F_SEED">
+			<properties>
+				<property name="Left" vt="Int8">82</property>
+				<property name="Top" vt="Int16">298</property>
+				<property name="Width" vt="Int8">61</property>
+				<property name="Height" vt="Int8">21</property>
+				<property name="Hint" vt="String">%__seed_hint__%</property>
+				<property name="TabOrder" vt="Int8">55</property>
+				<property name="Text" vt="String">68742091</property>
+				<property name="OnChange" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342251138</property>
+				<property name="CtrlExStyle" vt="Int16">512</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_INSERTVAR">
+			<properties>
+				<property name="Left" vt="Int16">167</property>
+				<property name="Top" vt="Int16">320</property>
+				<property name="Width" vt="Int8">74</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">%__insert_var__%</property>
+				<property name="TabOrder" vt="Int8">56</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TACheckbox" name="ID_RANDSEED">
+			<properties>
+				<property name="Left" vt="Int8">8</property>
+				<property name="Top" vt="Int16">323</property>
+				<property name="Width" vt="Int16">137</property>
+				<property name="Height" vt="Int8">17</property>
+				<property name="Hint" vt="String">%__randomize_seed_hint__%</property>
+				<property name="Caption" vt="String">%__randomize_seed__%</property>
+				<property name="TabOrder" vt="Int8">57</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342242819</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set"/>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_RANDF_AUTO">
+			<properties>
+				<property name="Left" vt="Int8">116</property>
+				<property name="Top" vt="Int16">248</property>
+				<property name="Width" vt="Int8">17</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__randf_auto_hint__%</property>
+				<property name="Caption" vt="String">&gt;</property>
+				<property name="TabOrder" vt="Int8">29</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockWidth, DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="IDC_F_RANDH_AUTO">
+			<properties>
+				<property name="Left" vt="Int8">116</property>
+				<property name="Top" vt="Int16">272</property>
+				<property name="Width" vt="Int8">17</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Hint" vt="String">%__randh_auto_hint__%</property>
+				<property name="Caption" vt="String">&gt;</property>
+				<property name="TabOrder" vt="Int8">33</property>
+				<property name="OnClick" vt="String">ef_insertionClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockWidth, DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+	</components>
+</object>

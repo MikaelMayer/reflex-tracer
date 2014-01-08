@@ -1,0 +1,67 @@
+#cs ----------------------------------------------------------------------------
+
+ AutoIt Version: 3.3.0.0
+ Author:         Mikaël Mayer
+ Date:           2009.XX.XX
+
+ Script Function:
+	Renders a set of 100 random fractals.
+
+#ce ----------------------------------------------------------------------------
+
+
+
+#include "GlobalUtils.au3"
+#include "Parameters.au3"
+#include <Date.au3>
+
+Dim $flags = ""
+Dim $dossier = @MyDocumentsDir&"\Reflex\"&StringReplace(_NowCalcDate(), "/", "-")&"\"
+Dim $prefixe = getAleaPrefix()
+addFlag($flags, "formula", $lucky_frac_default)
+addFlag($flags, "width",  534)
+addFlag($flags, "height", 400)
+addFlag($flags, "winmin", "-4-4i")
+addFlag($flags, "winmax", "4+4i")
+addFlag($flags, "colornan", $color_NaN_complex)
+
+DirCreate($dossier)
+
+For $i = 1 To 100
+  $flag_current = $flags
+  $filename = $prefixe&CompleteWithZeros($i, 3)
+  $fichier = $dossier&$filename
+  $fichier_bmp = $fichier&".bmp"
+  $fichier_png = $fichier&".png"
+
+  addFlag($flag_current, "output", $fichier_bmp)
+  addFlag($flag_current, "seed",   Random(0, 2147483647, 1))
+  $pid = runReflexWithArguments('--render'&$flag_current)
+  While ProcessExists($pid)
+    Sleep(1000)
+  WEnd
+  ImageConvert($fichier_bmp, $fichier_png)
+    If Not FileExists($fichier_png) Then
+      ;FileMove($out_raw_file, StringRegExpReplace($reflex_file, "\.png\z", ".bmp"))
+      ;MsgBox(0, $Error_title, StringFormat($Could_not_convert_from___s__to___s_, $out_raw_file, $reflex_file))
+    Else
+      Dim $informations = _ArrayCreate(3, _ArrayCreate("Title", "Reflex"), _ArrayCreate("Comment", $filename&@CRLF&), _ArrayCreate("Software", "ReflexRenderer v."&$VERSION_NUMER))
+      WritePngTextChunks($reflex_file, $informations)
+      FileDelete($out_raw_file)
+    EndIf
+Next
+
+Func CompleteWithZeros($i, $n)
+  While StringLen($i) < $n
+    $i = "0"&$i
+  WEnd
+  Return $i
+EndFunc
+
+Func getAleaPrefix()
+  Local $i = ""
+  While StringLen($i) < 5
+    $i = Chr(Random(65, 65+25, 1))&$i
+  WEnd
+  Return $i
+EndFunc

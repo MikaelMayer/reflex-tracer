@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<object type="TAForm" name="formula_chooser">
+	<properties>
+		<property name="Left" vt="Int16">302</property>
+		<property name="Top" vt="Int16">218</property>
+		<property name="Width" vt="Int16">264</property>
+		<property name="Height" vt="Int16">379</property>
+		<property name="Caption" vt="String">%__formula_chooser__%</property>
+		<property name="Color" vt="Ident">clBtnFace</property>
+		<property name="Font.Charset" vt="Ident">DEFAULT_CHARSET</property>
+		<property name="Font.Color" vt="Ident">clWindowText</property>
+		<property name="Font.Height" vt="Int8">-11</property>
+		<property name="Font.Name" vt="String">MS Sans Serif</property>
+		<property name="Font.Style" vt="Set"/>
+		<property name="OldCreateOrder" vt="False">False</property>
+		<property name="Visible" vt="True">True</property>
+		<property name="Style" vt="Int32">-1798373376</property>
+		<property name="ExStyle" vt="Int16">256</property>
+		<property name="Version" vt="String">1.03</property>
+		<property name="Description" vt="String">A standard Windows Form.</property>
+		<property name="FormOptOnEvent" vt="True">True</property>
+		<property name="FormOptExpVars" vt="True">True</property>
+		<property name="FormOptPopulate" vt="True">True</property>
+		<property name="FormOptIndentChar" vt="Int8">1</property>
+		<property name="FormOptIndentCount" vt="Int8">2</property>
+		<property name="FormOptIndentInit" vt="Int8">1</property>
+		<property name="FormOptVarScope" vt="Int8">1</property>
+		<property name="PixelsPerInch" vt="Int8">96</property>
+		<property name="TextHeight" vt="Int8">13</property>
+	</properties>
+	<components>
+		<object type="TALabel" name="lf_Label1">
+			<properties>
+				<property name="Left" vt="Int8">8</property>
+				<property name="Top" vt="Int8">12</property>
+				<property name="Width" vt="Int8">108</property>
+				<property name="Height" vt="Int8">17</property>
+				<property name="AutoSize" vt="False">False</property>
+				<property name="Caption" vt="String">%__choose_a_formula__%</property>
+				<property name="Font.Charset" vt="Ident">DEFAULT_CHARSET</property>
+				<property name="Font.Color" vt="Ident">clWindowText</property>
+				<property name="Font.Height" vt="Int8">-11</property>
+				<property name="Font.Name" vt="String">MS Sans Serif</property>
+				<property name="Font.Style" vt="Set"/>
+				<property name="ParentFont" vt="False">False</property>
+				<property name="TabOrder" vt="Int8">0</property>
+				<property name="OnClick" vt="String">lf_labelClick</property>
+				<property name="HaveVariable" vt="False">False</property>
+				<property name="CtrlStyle" vt="Int32">1342177536</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockTop</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="lf_ok">
+			<properties>
+				<property name="Left" vt="Int16">192</property>
+				<property name="Top" vt="Int8">8</property>
+				<property name="Width" vt="Int8">57</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">%__set_button__%</property>
+				<property name="TabOrder" vt="Int8">1</property>
+				<property name="OnClick" vt="String">lf_OkClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockTop, DockWidth, DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TAButton" name="lf_other_file">
+			<properties>
+				<property name="Left" vt="Int8">120</property>
+				<property name="Top" vt="Int8">8</property>
+				<property name="Width" vt="Int8">65</property>
+				<property name="Height" vt="Int8">25</property>
+				<property name="Caption" vt="String">%__other_file__%</property>
+				<property name="TabOrder" vt="Int8">2</property>
+				<property name="OnClick" vt="String">lf_ControlClick</property>
+				<property name="CtrlStyle" vt="Int32">1342259200</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockTop, DockWidth, DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TACheckbox" name="lf_import_window">
+			<properties>
+				<property name="Left" vt="Int8">4</property>
+				<property name="Top" vt="Int8">32</property>
+				<property name="Width" vt="Int8">122</property>
+				<property name="Height" vt="Int8">17</property>
+				<property name="Caption" vt="String">%__import_window__%</property>
+				<property name="Checked" vt="True">True</property>
+				<property name="State" vt="Ident">cbChecked</property>
+				<property name="TabOrder" vt="Int8">3</property>
+				<property name="OnClick" vt="String">lf_ControlClick</property>
+				<property name="CtrlStyle" vt="Int32">1342242819</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockTop, DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TACheckbox" name="lf_import_resolution">
+			<properties>
+				<property name="Left" vt="Int8">4</property>
+				<property name="Top" vt="Int8">48</property>
+				<property name="Width" vt="Int8">122</property>
+				<property name="Height" vt="Int8">17</property>
+				<property name="Caption" vt="String">%__import_resolution__%</property>
+				<property name="Checked" vt="True">True</property>
+				<property name="State" vt="Ident">cbChecked</property>
+				<property name="TabOrder" vt="Int8">4</property>
+				<property name="OnClick" vt="String">lf_ControlClick</property>
+				<property name="CtrlStyle" vt="Int32">1342242819</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockTop, DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TATreeView" name="lf_formula_tree">
+			<properties>
+				<property name="Left" vt="Int8">8</property>
+				<property name="Top" vt="Int8">72</property>
+				<property name="Width" vt="Int16">241</property>
+				<property name="Height" vt="Int16">265</property>
+				<property name="Hint" vt="String">%__formula_chooser_hint__%</property>
+				<property name="Indent" vt="Int8">19</property>
+				<property name="TabOrder" vt="Int8">5</property>
+				<property name="OnClick" vt="String">lf_ControlClick</property>
+				<property name="CtrlStyle" vt="Int32">1342373943</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockLeft, DockRight, DockTop, DockBottom</property>
+			</properties>
+			<components/>
+		</object>
+		<object type="TACheckbox" name="lf_import_comment">
+			<properties>
+				<property name="Left" vt="Int16">130</property>
+				<property name="Top" vt="Int8">40</property>
+				<property name="Width" vt="Int8">122</property>
+				<property name="Height" vt="Int8">17</property>
+				<property name="Caption" vt="String">%__import_comment__%</property>
+				<property name="Checked" vt="True">True</property>
+				<property name="State" vt="Ident">cbChecked</property>
+				<property name="TabOrder" vt="Int8">6</property>
+				<property name="OnClick" vt="String">lf_ControlClick</property>
+				<property name="CtrlStyle" vt="Int32">1342242819</property>
+				<property name="CtrlExStyle" vt="Int8">0</property>
+				<property name="Resizing" vt="Set">DockTop, DockHeight</property>
+			</properties>
+			<components/>
+		</object>
+	</components>
+</object>
