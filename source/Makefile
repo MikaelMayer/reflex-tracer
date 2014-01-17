@@ -1,7 +1,7 @@
 ##### Variables
 
-SRCDIR = .. ../complexlib ../libpng
-INCDIR = -I/usr/include -I.. -I../complexlib -I../libpng
+SRCDIR = . ./complexlib ./libpng
+INCDIR = -I/usr/include -I. -I./complexlib -I./libpng
 CPPFLAGS = -g -Wall -W $(INCDIR) 
 LFLAGS = -lm -lpthread
 CC = g++

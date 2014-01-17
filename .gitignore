@@ -1,7 +1,10 @@
 .svn
-/Debug
-/RealDebug
-/PublishOnFacebook
-/Release
-curent
+/random/Debug
+/random/RealDebug
+/random/PublishOnFacebook
+/random/Release
 /tmp
+*.class
+*.cache
+/project/target
+/target
