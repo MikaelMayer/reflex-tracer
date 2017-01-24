@@ -1,6 +1,6 @@
 /*******************************
  * Name:	funcalea.cpp
- * Author:	Mika�l Mayer
+ * Author:	Mikaël Mayer
  * Purpose:	This file enable to create random functions thanks to a random-tree.
  * History: Work started 20071029
  *********************************/
@@ -109,11 +109,11 @@ Function *Tree2::convertToFunction(bool holo) {
 		argument2=NULL;
 	}
 	int numbercases;
-	if(holo)
-		numbercases=18;
-	else
-		numbercases = 22;
 	if(argument2==NULL) {//Fonctions unaires
+    if(holo)
+      numbercases=18;
+    else
+      numbercases = 22;
 		switch(rand()%numbercases) {
 			case 0: return new Exp(argument1, false);
 			case 1: return new Cos(argument1, false);
@@ -139,7 +139,11 @@ Function *Tree2::convertToFunction(bool holo) {
 			case 21: return new Circle(argument1, false);
 		}
 	} else {
-		switch(rand()%6) {
+    if(holo)
+      numbercases=6;
+    else
+      numbercases = 7;
+		switch(rand()%numbercases) {
 			case 0: return new Multiplication(argument1, argument2, false);
 			case 1: return new Somme(argument1, argument2, false);
 			case 2: 
@@ -152,6 +156,7 @@ Function *Tree2::convertToFunction(bool holo) {
 				return new Soustraction(argument1, argument2, false);
 			case 4: return new ExposantComplexe(argument1, argument2, false);
 			case 5: return new Compose(argument1, argument2, false);
+      case 6: return new Modulo(argument1, argument2, false);
 		}
 	}
 	return NULL;

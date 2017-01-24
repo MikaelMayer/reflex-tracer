@@ -1,6 +1,6 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Name: RenderReflex.cpp
- * Author: Mika�l Mayer
+ * Author: Mikaël Mayer
  * Work started: 20080614
  * Purpose:  Render a reflex given some arguments.
  * Format: Ini file.
@@ -23,14 +23,14 @@ output=c:\the\path\where\to\store\the\file.bmp
 #include <math.h>
 #include <stdio.h>
 #include "argstream.h"
-#include "libpng/png.h"
+#include "png.h"
 //#include "tbb/task_scheduler_init.h"
 //#include "tbb/parallel_for.h"
 #//include "tbb/blocked_range.h"
 #include "stdafx.h"
-#include "complexlib/complex.h"
-#include "complexlib/functions.h"
-#include "complexlib/lexeur.h"
+#include "complex.h"
+#include "functions.h"
+#include "lexeur.h"
 
 #ifdef _MSC_VER
 #define SSCANF(inputstr,formatstr,...) \
@@ -85,32 +85,86 @@ void putInvertedNumber(ofstream &file, int size, int number) {
     size--;
   }
 }
+// Goal: Maximize the number of numbers of modulus between 1 and 5
+// with the coefficient closest to 1.
+Function *autoscale_function(Function* f) {
+  Function* function = f;
+  double x = -3.963647, y = -3.997621;
+  //double modules = 0;
+  double num = 10;
+  double modulearray[10];
+  for(int i = 0; i < num; i++) {
+    double m = function->eval(cplx(x, y)).module();
+    //modules += log(m);
+    x += 7.25314297;
+    y += 2.257493158;
+    if(x > 4) x -= 8;
+    if(y > 4) y -= 8;
+    modulearray[i] = m;
+  }
+  double modulemappedarray[10];
+  double bestcoef = 1.0;
+  int best = 0;
+  for(int j = 0; j < num; j++) {
+    double res = modulearray[j];
+    if(res >= 1 && res <= 5) {
+      best += 1;
+    }
+  }
+  for(int i = 0; i < num; i++) {
+    if(modulearray[i] != 0) {
+      int ok = 0;
+      for(int j = 0; j < num; j++) {
+        double res = modulearray[j]/modulearray[i];
+        if(res >= 1 && res <= 5) {
+          ok += 1;
+        }
+      }
+      if(ok > best) {
+        bestcoef = 1/modulearray[i];
+        best = ok;
+      }
+    }
+  }
+  
+  //double average = exp(modules/num);
+  if(bestcoef != 1.0) {
+    function = new Multiplication(new Constante(cplx(bestcoef,0)), function, false);
+  }
+  return function;
+}
 
 // Takes a string in input, the name is for debug purpose only.
 // final_string is an array of size MAX_FUNC_LENGTH where the formula will be stored,
 // if there was any randomness.
-Function* getFunction(const char* string, char* final_string, const char* name, bool force_output=false, STRING_TYPE formula_style=DEFAULT_TYPE) {
+Function* getFunction(const char* string, char* final_string, const char* name, bool force_output=false, STRING_TYPE formula_style=DEFAULT_TYPE, bool autoscale=false) {
   Parseur *parseur = new Parseur(string);
   Function *function = parseur->valeurFonction();
+   
   if(!function) {
-    cerr << name << " error : " << string << " <= "
-      << Parseur::errorNum[parseur->errorCode()]
-      << " at position " << parseur->getPosition() << endl;
+    cerr << name << " error : " << string << " <= ";
+    if(parseur->errorCode() >= 0){
+      cerr << Parseur::errorNum[parseur->errorCode()];
+    } else {
+      cerr << "Simplification error";
+    }
+    cerr << " at position " << parseur->getPosition() << endl;
     cerr << name << " error : ";
     for(int i = 0; i< parseur->getPosition(); i++) {
       cerr << string[i];
     }
     cerr << "^" << endl;
   } else {
+    if(autoscale) {
+      function = autoscale_function(function);
+    }
+    TCHAR funcstring[MAX_FUNC_LENGTH];
+    *(function->toStringConst(funcstring, funcstring+MAX_FUNC_LENGTH, formula_style))=L'\0';
+    if(final_string != NULL) {
+       _tcscpy(final_string, funcstring);
+    }
     if(parseur->hasBeenMacro() || force_output) {//On recopie la fonction...
-      TCHAR funcstring[MAX_FUNC_LENGTH];
-			*(function->toStringConst(funcstring, funcstring+MAX_FUNC_LENGTH, formula_style))=L'\0';
       cout << "formula:" << funcstring << endl;
-      if(final_string != NULL)
-        _tcscpy(final_string, funcstring);
-    } else {
-      if(final_string != NULL)
-        _tcscpy(final_string, string);
     }
   }
   delete parseur;
@@ -200,7 +254,8 @@ void getMinXYMaxXY(cplx winmin, cplx winmax,
 
 int renderBmp(const char* formula_string, int width, int height,
               const char* winmin_string, const char* winmax_string, const char* output_string,
-              int seed_init, unsigned int colornan, bool realmode
+              int seed_init, unsigned int colornan, bool realmode,
+              bool autoscale
               ) {
   bool fine = true;
   int errpos = 0;
@@ -209,7 +264,7 @@ int renderBmp(const char* formula_string, int width, int height,
   srand(seed_init);
   TCHAR final_funcstring[MAX_FUNC_LENGTH];
 
-  Function *f_formula = getFunction(formula_string, final_funcstring, "Formula");
+  Function *f_formula = getFunction(formula_string, final_funcstring, "Formula", false, DEFAULT_TYPE, autoscale);
 
   fine = fine && f_formula;
   fine = fine && getCplx(winmin_string, "Winmin", winmin);
@@ -281,7 +336,7 @@ int renderBmp(const char* formula_string, int width, int height,
       cout << j << "/" << y << endl;
       color_base = cplx(j * jMult + jBase, 0).couleur24();
       for (int i = 0; i < x; i++) {
-        //Calcul de la distance du point � la courbe
+        //Calcul de la distance du point à la courbe
         double dmin = 2.0;
         if((j > valeursj[i]+0.5 && (i == 0 || j > valeursj[i - 1] + 0.5)
                                 && (i == x - 1 || j > valeursj[i + 1] + 0.5))
@@ -318,7 +373,7 @@ int renderBmp(const char* formula_string, int width, int height,
           color = color_base;
         } else if(dmin >= limup) { // En dehors de la ligne
           color = 0xFFFFFF;
-        } else {                   // Sur la limite de la ligne: d�grad�
+        } else {                   // Sur la limite de la ligne: dégradé
           double coef = (dmin - 0.5)/(limup - 0.5);
           unsigned int blu = ((color_base & 0xFF0000) >> 16);
           unsigned int gre = ((color_base & 0x00FF00) >> 8);
@@ -349,25 +404,27 @@ void write_row_callback(png_structp png_ptr, png_uint_32 row_number, int pass)
     //fprintf(stdout, "w");
 }
 
-
-int renderPng(const char* formula_string, int width, int height,
+int renderPng(const char* formula_string, const char* formulalatex_string, int width, int height,
               const char* winmin_string, const char* winmax_string, const char* output_string,
-              int seed_init, unsigned int colornan, bool realmode, string comment_string
-              ) {
+              int seed_init, unsigned int colornan, bool realmode, string comment_string,
+              bool autoscale) {
   bool fine = true;
-  int errpos = 0;
+  //int errpos = 0;
   cplx winmin, winmax;
 
   TCHAR final_funcstring[MAX_FUNC_LENGTH];
+  TCHAR final_funcstringlatex[MAX_FUNC_LENGTH];
 
   srand(seed_init);
-  Function *f_formula = getFunction(formula_string, final_funcstring, "Formula");
+  Function *f_formula = getFunction(formula_string, final_funcstring, "Formula", false, DEFAULT_TYPE, autoscale);
+  Function *f_formulalatex = getFunction(formulalatex_string, final_funcstringlatex, "Formula", false, LATEX_TYPE, autoscale);
 
   fine = fine && f_formula;
   fine = fine && getCplx(winmin_string, "Winmin", winmin);
   fine = fine && getCplx(winmax_string, "Winmax", winmax);
   if(!fine) {
     if(f_formula)	f_formula = f_formula->kill();
+    if(f_formulalatex) f_formulalatex = f_formulalatex->kill();
     return -1;
   }
   cplx::color_NaN = colornan;
@@ -376,6 +433,7 @@ int renderPng(const char* formula_string, int width, int height,
 
   if(!output_file) {
     if(f_formula)	f_formula = f_formula->kill();
+    if(f_formulalatex) f_formulalatex = f_formulalatex->kill();
     cerr << "Output file invalid : " << output_string << endl;
     return -1;
   }
@@ -385,13 +443,13 @@ int renderPng(const char* formula_string, int width, int height,
   //png_infop write_end_info_ptr;
 
   write_ptr = png_create_write_struct
-  (PNG_LIBPNG_VER_STRING, png_voidp_NULL,
-      png_error_ptr_NULL, png_error_ptr_NULL);
+  (PNG_LIBPNG_VER_STRING, NULL/*png_voidp_NULL*/,
+      /*png_error_ptr_NULL*/NULL, NULL/*png_error_ptr_NULL*/);
   if(!write_ptr)
      return -1;
   png_init_io(write_ptr, output_file);
 
-  png_debug(0, "Allocating read_info, write_info and end_info structures\n");
+  //png_debug(0, "Allocating read_info, write_info and end_info structures\n");
   write_info_ptr = png_create_info_struct(write_ptr);
   //write_end_info_ptr = png_create_info_struct(write_ptr);
 
@@ -459,7 +517,7 @@ int renderPng(const char* formula_string, int width, int height,
       cout << (y-1-j) << "/" << y << endl;
       color_base = cplx(j * jMult + jBase, 0).couleur24();
       for (int i = 0; i < x; i++) {
-        //Calcul de la distance du point � la courbe
+        //Calcul de la distance du point à la courbe
         double dmin = 2.0;
         if((j > valeursj[i]+0.5 && (i == 0 || j > valeursj[i - 1] + 0.5)
                                 && (i == x - 1 || j > valeursj[i + 1] + 0.5))
@@ -496,7 +554,7 @@ int renderPng(const char* formula_string, int width, int height,
           color = color_base;
         } else if(dmin >= limup) { // En dehors de la ligne
           color = 0xFFFFFF;
-        } else {                   // Sur la limite de la ligne: d�grad�
+        } else {                   // Sur la limite de la ligne: dégradé
           double coef = (dmin - 0.5)/(limup - 0.5);
           unsigned int blu = ((color_base & 0xFF0000) >> 16);
           unsigned int gre = ((color_base & 0x00FF00) >> 8);
@@ -518,17 +576,20 @@ int renderPng(const char* formula_string, int width, int height,
   }
   delete []row_pointer;
   f_formula = f_formula->kill();
+  f_formulalatex = f_formulalatex->kill();
   //Writes comments
   //Formula
   //@Options, etc.
-  png_text text_title, text_comment, text_software;
+  png_text text_title, text_comment, text_software, text_latex;
   text_title.compression    = -1; // "tEXt" No compression
   text_comment.compression  = -1;
   text_software.compression = -1;
+  text_latex.compression = -1;
 
   text_title.key    = TEXT("Title");
   text_comment.key  = TEXT("Comment");
   text_software.key = TEXT("Software");
+  text_latex.key = TEXT("LaTeX");
 
   text_title.text    = TEXT("Reflex");
   text_software.text = TEXT("Reflex Renderer");
@@ -545,16 +606,25 @@ int renderPng(const char* formula_string, int width, int height,
   ss << "colornan=" << showbase << hex << colornan;
   ss_string = ss.str();
   text_comment.text = const_cast<char*>(ss_string.c_str());
+  
+  ostringstream ss2(stringstream::in | stringstream::out);
+  ss2 << final_funcstringlatex;
+  string ss2_string;
+  ss2_string = ss2.str();
+  text_latex.text = const_cast<char*>(ss2_string.c_str());
+  
   //cout << "String got : " << ss.str() << endl;
   //cout << "Written in png : " << text_comment.text << endl;
   
   text_title.text_length    = strlen(text_title.text);
   text_comment.text_length  = strlen(text_comment.text);
   text_software.text_length = strlen(text_software.text);
+  text_latex.text_length = strlen(text_latex.text);
 
   png_set_text(write_ptr, write_info_ptr, &text_title, 1);
   png_set_text(write_ptr, write_info_ptr, &text_comment, 1);
   png_set_text(write_ptr, write_info_ptr, &text_software, 1);
+  png_set_text(write_ptr, write_info_ptr, &text_latex, 1);
 
   png_write_end(write_ptr, write_info_ptr);
   png_destroy_write_struct(&write_ptr, &write_info_ptr);
@@ -565,7 +635,7 @@ int renderPng(const char* formula_string, int width, int height,
 int calculateNewWindow(int width, int height, const char* winmin_string,
                    const char* winmax_string, int deltax, int deltay) {
   bool fine = true;
-  int errpos = 0;
+  //int errpos = 0;
   cplx winmin, winmax;
   fine = fine && getCplx(winmin_string, "Winmin", winmin);
   fine = fine && getCplx(winmax_string, "Winmax", winmax);
@@ -590,7 +660,7 @@ int calculateNewWindow(int width, int height, const char* winmin_string,
   return 0;
 }
 
-int simplify_formula(const char* formula_string, int seed_init, STRING_TYPE formula_style) {
+int simplify_formula(const char* formula_string, int seed_init, STRING_TYPE formula_style, bool autoscale) {
   bool fine = true;
   int errpos = 0;
 
@@ -598,7 +668,7 @@ int simplify_formula(const char* formula_string, int seed_init, STRING_TYPE form
 
   srand(seed_init);
   // We force the simplification of the formula
-  Function *f_formula = getFunction(formula_string, NULL, "Formula", true, formula_style);
+  Function *f_formula = getFunction(formula_string, NULL, "Formula", true, formula_style, autoscale);
   fine = fine && f_formula;
   if(f_formula)	f_formula = f_formula->kill();
   if(!fine) {
@@ -606,7 +676,7 @@ int simplify_formula(const char* formula_string, int seed_init, STRING_TYPE form
   }
   //cout << "formula:" << final_funcstring << endl;
   return 0;
-
+  /*
     //TODO : Delete everything
   int size_func = MAX_FUNC_LENGTH;
   TCHAR* funcStringEnd = 0;
@@ -628,7 +698,7 @@ int simplify_formula(const char* formula_string, int seed_init, STRING_TYPE form
   else           cout << "Error ! unable to convert formula to string" << endl;
   if(f_formula)  f_formula = f_formula->kill();
   if(funcString) delete funcString;
-  return 0;
+  return 0;*/
 }
 
 inline void set_if_tag(const char* arg, const char* TAG, const char * &var) {
@@ -643,7 +713,7 @@ inline void set_if_null(const char* &value, const char* DEFAULT) {
 }
 
 
-int main(int argc, char** argv) {
+int main(int argc, char* argv[]) {
   
   argstream as(argc, argv);
 
@@ -651,7 +721,7 @@ int main(int argc, char** argv) {
   bool new_window;
   bool simplify_mode;
   as >> option("render", render_mode,
-    "Renders the reflex to a BMP file.\n"
+    "Renders the reflex to a *.bmp or *.png file.\n"
     "Used options are --width, --height, --winmin, --winmax, --output, --colornan, --realmode, --seed");
   as >> option("new_window", new_window,
     "Returns new window coordinates if the original window is shifted.\n"
@@ -661,6 +731,7 @@ int main(int argc, char** argv) {
     "Used options are --formula, --seed");
 
   string formula_string= "0";
+  string formulalatex_string= "";
   int width = 201;
   int height = 201;
   string winmin_string = "-4-4i";
@@ -675,9 +746,11 @@ int main(int argc, char** argv) {
   bool realmode;
   bool openoffice_formula;
   bool latex_formula;
+  bool autoscale;
   STRING_TYPE formula_style = DEFAULT_TYPE;
 
-  as >> parameter('f', "formula", formula_string, "A formula like (1+2-x)/sin(z)", false)
+  as >> parameter('f', "formula", formula_string, "A formula like (1+2-x)/sin(z%i)", false)
+     >> parameter('t', "formula4latex", formulalatex_string, "If the formula for LaTeX should be different", false)
      >> parameter('w', "width", width, "The rendering width in pixels", false)
      >> parameter('h', "height", height, "The rendering height in pixels", false)
      >> parameter('m', "winmin", winmin_string, "The lower left complex of the reflex", false)
@@ -691,12 +764,17 @@ int main(int argc, char** argv) {
      >> parameter('d', "delta_x", deltax_string, "The horizontal shift", false)
      >> parameter('e', "delta_y", deltay_string, "The vertical shift", false)
      >> parameter('x', "comment", comment_string, "The comment for the formula", false)
+     >> option('s', "autoscale", autoscale, "If it finds a multiplicator to find it.")
      >> help();
 
   SSCANF(deltax_string.c_str(), "%d", &delta_x);
   SSCANF(deltay_string.c_str(), "%d", &delta_y);
   SSCANF(colornan_string.c_str(), "%x", &colornan);
 
+  if(formulalatex_string == "") {
+    formulalatex_string = formula_string;
+  }
+  
   if(output_string.size() < 4) {
     cout << "The output file name "<<output_string<< " is not valid. It should end with .png or .bmp" << endl;
     exit(0);
@@ -721,17 +799,17 @@ int main(int argc, char** argv) {
   if(render_mode) {
     bool is_png = (format_string == "png");
     if(is_png) {
-      return renderPng(formula_string.c_str(), width, height,
+      return renderPng(formula_string.c_str(), formulalatex_string.c_str(), width, height,
           winmin_string.c_str(), winmax_string.c_str(), output_string.c_str(),
-          seed, colornan, realmode, comment_string);
+          seed, colornan, realmode, comment_string, autoscale);
     } else {
       return renderBmp(formula_string.c_str(), width, height,
           winmin_string.c_str(), winmax_string.c_str(), output_string.c_str(),
-          seed, colornan, realmode);
+          seed, colornan, realmode, autoscale);
     }
   }
   if(simplify_mode) {
-    return simplify_formula(formula_string.c_str(), seed, formula_style);
+    return simplify_formula(formulalatex_string.c_str(), seed, formula_style, autoscale);
   }
   if(new_window) {
     //cout << width << ", " << height << ", " << delta_x << ", " << delta_y << endl;

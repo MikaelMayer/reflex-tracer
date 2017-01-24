@@ -7,7 +7,8 @@
 #define _CRT_SECURE_NO_DEPRECATE
 #include "stdafx.h"
 #include "complex.h"
-
+#include <iostream>
+using namespace std;
 /*
  *Fonctions de base, gestion bas niveau des complexes
  */
@@ -30,14 +31,49 @@ cplx& cplx::operator/= (const cplx &z){	(*this)*=z.invs(); return (*this); }
 cplx& cplx::operator-= (const cplx &z)
 { r-=z.r; i-=z.i; return *this;}
 
+cplx& cplx::operator%= (const cplx &z)
+{
+  if(z.r!=0) {
+    if(z.r > 0) {
+      r = fmod(r, z.r);
+      if(r < 0) r += z.r;
+    } else {
+      r = -fmod(-r, -z.r);
+      if(r > 0) r += z.r;
+    }
+  }
+  if(z.i!=0) {
+    if(z.i > 0) {
+      i = fmod(i, z.i);
+      if(i < 0) i += z.i;
+    } else {
+      i = -fmod(-i, -z.i);
+      if(i > 0) i += z.i;
+    }
+  }
+  return *this;
+}
+
 double cplx::module() const						{return sqrt(r*r+i*i);}
 double cplx::moduleCarre() const				{return r*r+i*i;}
 cplx cplx::conj() const							{return cplx(r,-i);}
-cplx cplx::invs() const							{double m=this->moduleCarre(); return cplx(r/m, -i/m);}
+cplx cplx::invs() const							{double m=this->moduleCarre();
+return cplx(r/m, -i/m);}
 double cplx::argument() const {
 	if(r==0&&i==0) return 0;
 	if(i==0&&r<0) return PI;
 	return 2*atan(i/(module()+r));
+}
+double cplx::argument(double modulo) const {
+  double res = argument();
+  if(modulo == 0) return res;
+  double n = floor((modulo + PI - res)/PITIMES2);
+  if(!(res + n*PITIMES2 > modulo - PI) || !(res + n*PITIMES2 <= modulo + PI)) {
+    return 1/0.00001;
+  }
+  //assume(res + n*PITIMES2 > modulo - PI);
+  //assume(res + n*PITIMES2 <= modulo + PI);
+  return res + (n*PITIMES2);
 }
 
 /*
@@ -48,7 +84,10 @@ cplx operator +(const cplx & z, const cplx & w)	{cplx res=z; res+=w; return res;
 cplx operator *(const cplx & z, const cplx & w)	{cplx res=z; res*=w; return res;}
 cplx operator -(const cplx & z, const cplx & w)	{cplx res=z; res-=w; return res;}
 cplx operator /(const cplx & z, const cplx & w)	{cplx res=z; res/=w; return res;}
+cplx operator %(const cplx & z, const cplx & w)	{cplx res=z; res%=w; return res;}
 cplx operator -(const cplx & z)	{return cplx(-z.r,-z.i);}
+
+bool operator==(const cplx & z, const cplx & w)	{return z.r == w.r && z.i == w.i;}
 
 cplx operator ^(const cplx & z, int w){
 	if(w==0) return 1;
@@ -67,12 +106,17 @@ cplx operator ^(const cplx & z, int w){
 	return mult*res;
 }
 
+cplx operator ^(const cplx & z, const cplx &w){
+	cplx exparg = w*ln(z);
+  return exp(exparg);
+}
 
 /*
  *Fonctions trigonom�triques et hyperboliques.
  */
 
 cplx exp(cplx & z)		{ return cplx(exp(z.r)*cos(z.i),exp(z.r)*sin(z.i)); }
+cplx expDirect(cplx z)		{ return cplx(exp(z.r)*cos(z.i),exp(z.r)*sin(z.i)); }
 
 const cplx facteurSin(0,-0.5);
 const cplx facteurCos(0.5,0);
@@ -93,19 +137,27 @@ cplx cosh(cplx & z)		{ cplx mz = 0-z; return 0.5*(exp(z)+exp(mz)); }
 cplx tanh(cplx & z)		{ cplx dz = 2*z; return 1+((-2)/(exp(dz)+1));}
 
 /*
- *Fonctions r�ciproques
+ *Fonctions réciproques
  */
 
+cplx ln(cplx z, double modulo)		{ return cplx(log(z.module()),z.argument(modulo)); }
 cplx ln(cplx z)		{ return cplx(log(z.module()),z.argument()); }
 cplx sqrt(cplx z)		{ cplx tmp = cplx(0,0.5)*z.argument(); return sqrt(z.module())*exp(tmp); }
+cplx sqrt(cplx z, double modulo)		{ cplx tmp = cplx(0,0.5)*z.argument(modulo); return sqrt(z.module())*exp(tmp); }
 
 cplx argsh(cplx & z)	{ cplx tmp1 = (z^2)+1; cplx tmp2 = z+sqrt(tmp1); return ln(tmp2); }
+cplx argsh(cplx & z, cplx &w)	{ cplx tmp1 = (z^2)+1; cplx tmp2 = z+sqrt(tmp1, w.imag()); return ln(tmp2,w.real()); }
 cplx argch(cplx & z)	{ cplx tmp1 = (z^2)-1; cplx tmp2 = z+sqrt(tmp1); return ln(tmp2); }
+cplx argch(cplx & z, cplx &w)	{ cplx tmp1 = (z^2)-1; cplx tmp2 = z+sqrt(tmp1, w.imag()); return ln(tmp2,w.real()); }
 cplx argth(cplx & z)	{ cplx tmp = (z+1)/(1-z); return 0.5*ln(tmp); }
+cplx argth(cplx & z, double modulo)	{ cplx tmp = (z+1)/(1-z); return 0.5*ln(tmp, modulo); }
 
 cplx arcsin(cplx & z)	{ cplx tmp = I*z+sqrt(1-(z^2)); return mI*ln(tmp); }
+cplx arcsin(cplx & z, cplx & w)	{ cplx tmp = I*z+sqrt(1-(z^2),w.imag()); return mI*ln(tmp, w.real()); }
 cplx arccos(cplx & z)	{ return z.real()*z.imag()<0?mI*ln(z-sqrt((z^2)-1)):mI*ln(z+sqrt((z^2)-1)); }
+cplx arccos(cplx & z, cplx & w)	{ return z.real()*z.imag()<0?mI*ln(z-sqrt((z^2)-1,w.imag()), w.real()):mI*ln(z+sqrt((z^2)-1,w.imag()),w.real()); }
 cplx arctan(cplx & z)	{ return cplx(0,-0.5)*ln((2/(z.r*z.r+(z.i+1)*(z.i+1)))*cplx(z.i+1,z.r)-1); }
+cplx arctan(cplx & z, double modulo)	{ return cplx(0,-0.5)*ln((2/(z.r*z.r+(z.i+1)*(z.i+1)))*cplx(z.i+1,z.r)-1,modulo); }
 
 /*
  *Fonction d'association de couleurs
@@ -210,14 +262,70 @@ void cplx::toStringRight(TCHAR *ibuff, int size) {
     i--;
   }
 }
+void cplx::toStringMarked(TCHAR *ibuff) {
+  if(this->r == J.r && this->i == J.i) {
+    _stprintf(ibuff, TEXT("_j"));
+  } else if(i==0)
+		_stprintf(ibuff, TEXT("%g"), r);
+  else if(r==0) {
+    if(i==1) {
+		  _stprintf(ibuff, TEXT("_i"));
+    } else if(i==-1) {
+      _stprintf(ibuff, TEXT("-_i"));
+    } else if(!(i-i == 0)){
+      _stprintf(ibuff, TEXT("%g*_i"), i);
+    } else {
+      _stprintf(ibuff, TEXT("%g_i"), i);
+    }
+  } else {
+    if(i==1) {
+		  _stprintf(ibuff, TEXT("%g+_i"), r);
+    } else if(i==-1) {
+      _stprintf(ibuff, TEXT("%g-_i"), r);
+    } else if(!(i-i == 0)){
+      _stprintf(ibuff, TEXT("%g%+g*_i"), r, i);
+    } else {
+      _stprintf(ibuff, TEXT("%g%+g_i"), r, i);
+    }
+  }
+}
+
+void cplx::toStringMarkedLatex(TCHAR *ibuff) {
+  if(this->r == J.r && this->i == J.i) {
+    _stprintf(ibuff, TEXT("\\text{\\Huge J}"));
+  } else if(i==0)
+		_stprintf(ibuff, TEXT("%g"), r);
+  else if(r==0) {
+    if(i==1) {
+		  _stprintf(ibuff, TEXT("\\text{\\Huge I}"));
+    } else if(i==-1) {
+      _stprintf(ibuff, TEXT("-\\text{\\HugeI}"));
+    } else {
+      _stprintf(ibuff, TEXT("%g\\text{\\Huge I}"), i);
+    }
+  } else {
+    if(i==1) {
+		  _stprintf(ibuff, TEXT("%g+\\text{\\Huge I}"), r);
+    } else if(i==-1) {
+      _stprintf(ibuff, TEXT("%g-\\text{\\Huge I}"), r);
+    } else {
+      _stprintf(ibuff, TEXT("%g%+g\\text{\\Huge I}"), r, i);
+    }
+  }
+}
+
 void cplx::toString(TCHAR *ibuff) {
-	if(i==0)
+  if(this->r == J.r && this->i == J.i) {
+    _stprintf(ibuff, TEXT("j"));
+  } else if(i==0)
 		_stprintf(ibuff, TEXT("%g"), r);
   else if(r==0) {
     if(i==1) {
 		  _stprintf(ibuff, TEXT("i"));
     } else if(i==-1) {
       _stprintf(ibuff, TEXT("-i"));
+    } else if(!(i-i == 0)){
+      _stprintf(ibuff, TEXT("%g*i"), i);
     } else {
       _stprintf(ibuff, TEXT("%gi"), i);
     }
@@ -226,6 +334,8 @@ void cplx::toString(TCHAR *ibuff) {
 		  _stprintf(ibuff, TEXT("%g+i"), r);
     } else if(i==-1) {
       _stprintf(ibuff, TEXT("%g-i"), r);
+    } else if(!(i-i == 0)){
+      _stprintf(ibuff, TEXT("%g%+g*i"), r, i);
     } else {
       _stprintf(ibuff, TEXT("%g%+gi"), r, i);
     }

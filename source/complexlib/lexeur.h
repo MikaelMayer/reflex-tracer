@@ -1,6 +1,6 @@
 /*******************************
  * Name:	lexeur.h
- * Author:	Mika�l Mayer
+ * Author:	Mikaël Mayer
  * Purpose:	The Lexeur Class can interpret a chain into Lexemes,
  *		which are more easy to interpret after.
  *			The Parser Class uses a Lexeur and a grammar
@@ -19,6 +19,8 @@ class Lexeur {
 	int counter;
   int counter_previous;
 public:
+  const TCHAR debugChar() { return k; };
+
 	Lexeur(const TCHAR* carCourant);
 	int getPosition();
   int getPositionPrevious();
@@ -35,8 +37,12 @@ public:
 	bool isParenthesis();
 	bool isWhiteCharacter();
 	bool isComa();
+  bool isSemicolon();
+  bool isEqual();
 	bool isPoint();
 	bool isDollar();
+	bool isPound();
+	bool isBang();
 
 	Lexeme* readChain();
 	Lexeme* readNumber();
@@ -45,6 +51,8 @@ public:
 	Lexeme* readVariable();
 	Lexeme* readLexeme();
 	Lexeme* readComa();
+  Lexeme* readSemicolon();
+  Lexeme* readEqual();
 
   int _readInteger(int &count);
 };
@@ -57,16 +65,23 @@ private:
 	void avancerLex();
 	void lireParentheseOuvrante();
 	void lireParentheseFermante();
-	void lireVirgule();
+	void eatComa();
+  void lireSemicolon();
+  void lireEqual();
+  void lireIn();
+  void lireThen();
+  void lireElse();
 	int lireEntier();
 	double lireFloat();
-	Variable* lireVariable();
+	VariableRef* lireVariable();
 
   void parseBackwardsAndThrowError(PARSE_ERROR e);
 	bool termine();
+	Function *lireD();
 	Function *lireE();
 	Function *lireP();
 	Function *lireF();
+	Function *lireG();
 	Function *lireX();
 	Function *lireConstante();
 	Function *lireFunction();

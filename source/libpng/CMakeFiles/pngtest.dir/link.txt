@@ -1,0 +1,1 @@
+/usr/bin/cc    -Wl,--enable-auto-import  CMakeFiles/pngtest.dir/pngtest.o  -o pngtest.exe -Wl,--out-implib,libpngtest.dll.a -Wl,--major-image-version,0,--minor-image-version,0  libpng16.dll.a -lz -Wl,-Bstatic -lm -Wl,-Bdynamic 

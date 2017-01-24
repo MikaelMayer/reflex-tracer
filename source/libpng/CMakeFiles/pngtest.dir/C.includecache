@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/Mikael/Documents/Reflex/LogicielOrdi/RenderReflex/source/libpng/png.h
+pnglibconf.h
+/cygdrive/c/Users/Mikael/Documents/Reflex/LogicielOrdi/RenderReflex/source/libpng/pnglibconf.h
+pngconf.h
+/cygdrive/c/Users/Mikael/Documents/Reflex/LogicielOrdi/RenderReflex/source/libpng/pngconf.h
+
+/cygdrive/c/Users/Mikael/Documents/Reflex/LogicielOrdi/RenderReflex/source/libpng/pngconf.h
+limits.h
+-
+stddef.h
+-
+stdio.h
+-
+setjmp.h
+-
+time.h
+-
+
+/cygdrive/c/Users/Mikael/Documents/Reflex/LogicielOrdi/RenderReflex/source/libpng/pnglibconf.h
+
+/cygdrive/c/Users/Mikael/Documents/Reflex/LogicielOrdi/RenderReflex/source/libpng/pngtest.c
+stdio.h
+-
+stdlib.h
+-
+string.h
+-
+png.h
+/cygdrive/c/Users/Mikael/Documents/Reflex/LogicielOrdi/RenderReflex/source/libpng/png.h
+zlib.h
+/cygdrive/c/Users/Mikael/Documents/Reflex/LogicielOrdi/RenderReflex/source/libpng/zlib.h
+time.h
+-
+

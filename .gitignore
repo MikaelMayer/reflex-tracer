@@ -8,3 +8,10 @@
 *.cache
 /project/target
 /target
+/**/Thumbs.db
+
+/bin
+!/bin/Makefile
+!/bin/build
+/**/.picasa.ini
+*.o
