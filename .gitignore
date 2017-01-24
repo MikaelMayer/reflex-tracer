@@ -11,7 +11,8 @@
 /**/Thumbs.db
 
 /bin
-!/bin/Makefile
-!/bin/build
+!bin/Makefile
+!bin/build
+
 /**/.picasa.ini
 *.o
